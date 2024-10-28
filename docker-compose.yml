@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: backend
+    volumes:
+      - ./backend:/app
+      - /app/conda-env  # Prevents conda environment from being overwritten
+    ports:
+      - "5001:5001"  # Maps container's 5001 to host's 5001
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - FLASK_RUN_HOST=0.0.0.0
+      - FLASK_RUN_PORT=5001  # Specify Flask port
+      - FLASK_DEBUG=1  # Enable hot-reloading for development
+      - PYTHONUNBUFFERED=1
+      - CONDA_DEFAULT_ENV=flask_app_dev_env  # Specify your conda environment name
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

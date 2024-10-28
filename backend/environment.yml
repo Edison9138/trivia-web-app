@@ -1,0 +1,12 @@
+name: flask_app_dev_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Core dependencies
+  - python=3.9
+  - flask
+  - requests
+  # Development dependencies
+  - pytest
+  - jupyter

@@ -1,0 +1,473 @@
+.app {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 500;
+}
+
+body {
+  background-color: #F1F1F1;
+}
+
+.header{
+  background-color: #FFC46C;
+  height: 10vh;
+  min-height:50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bt-logo-link{
+  display: flex;
+  margin-left: 30px;
+  width: 120px;
+  align-items: center;
+  height: 100%;
+}
+
+.ig-logo-link{
+  margin-left: 30px;
+  width: 40px;
+  display: flex;
+}
+
+.fb-logo-link{
+  display: flex;
+}
+.linkedin-logo-link{
+  display: flex;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bt-logo{
+  margin-top: 3px;
+  width: 120px;
+  cursor: pointer;
+  transition: opacity 0.1s;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.bt-logo-link{
+  max-width: 120px;
+}
+
+.nav-pages, .bottom-bar-questions {
+  flex: 1;
+}
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-pages{
+  font-size: 14px;
+  height: 30px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #fcead0;
+  position: fixed;
+  bottom: 55px;
+  left: 0;
+  z-index: 1;
+}
+
+.nav-pages p{
+  cursor: pointer;
+}
+
+.nav-pages p:hover{
+  font-weight: 600;
+}
+
+
+.ig-logo{
+  width: 40px;
+  cursor: pointer;
+  transition: opacity 0.1s;
+}
+
+.fb-logo{
+  width: 32px;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: opacity 0.1s;
+}
+
+.linkedin-logo{
+  width: 36px;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: opacity 0.1s;
+}
+
+.bottom-bar-no-questions{
+  background-color: #FFC46C;
+  height: 10vh;
+  min-height: 50px;
+  display: flex;
+  padding-bottom: 0px;
+  align-items: center;
+  width: 100%;
+}
+
+.bottom-bar-questions{
+  background-color: #FFC46C;
+  height: 7vh; 
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  position:absolute;
+  bottom:0;
+  margin-top: 0;
+  width: 100%;
+}
+
+.main{
+  display: flex;
+  margin-top: 10vh;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-email-container {
+  margin-top: 4vh;
+}
+
+.info,
+.start-button{
+  margin: auto;
+}
+
+.info-text{
+  font-size: 17px;
+}
+
+.start-button{
+  margin: none;
+  margin-left: 16px;
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: none;
+  background-color: #FFC46C;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgba(122, 79, 9, 1);
+  transition: opacity 0.1s;
+  cursor: pointer;
+  display: block;
+  box-shadow: 1px 2px 3px rgba(0,0,0, 0.1);
+}
+
+.bt-logo:hover,
+.ig-logo:hover,
+.fb-logo:hover,
+.linkedin-logo:hover,
+.start-button:hover,
+.back-button:hover,
+.next-button:hover{
+  opacity: 0.8;
+}
+
+.email-form{
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.email-input{
+  padding: 10px;
+  font-size: 14px;
+  border: 2px solid rgba(122, 79, 9, 0.4);
+  border-radius: 6px;
+  box-shadow: 1px 2px 3px rgba(0,0,0, 0.1);
+  width: calc(50vw - 108px - 40px)
+}
+
+.email-input:focus{
+  outline: none;
+  border: 2px solid rgba(122, 79, 9, 0.8);
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh;
+  width: 50vw;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  margin-top: -30px;
+  margin-bottom: 25px;
+  border-radius: 6px;
+  box-shadow: 1px 2px 3px rgba(0,0,0, 0.1);
+}
+
+.info-header{
+  margin-top: 16px;
+  font-size: 1.5em;
+}
+
+.info-text{
+  display: flex;
+  width: 80%;
+  text-align: left;
+}
+
+.goodArts,
+.goodSTEM,
+.flexMajor,
+.curriculum,
+.research,
+.ruralCity,
+.alumNetwork,
+.spirit,
+.goodFoodAround,
+.diningHall{
+  box-shadow: 1px 2px 3px rgba(0,0,0, 0.1);
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  width: 60vw;
+  min-width: 600px;
+  height: 50vh;
+  min-height: 200px;
+  border-radius: 15px;
+}
+
+.confirmPage,
+.endPage{
+  margin-top: 50px;
+  box-shadow: 1px 2px 3px rgba(0,0,0, 0.1);
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+  justify-content: right;
+  width: 800px;
+  height: 200px;
+  border-radius: 15px;
+}
+
+.party,
+.enrollment,
+.intlStudent,
+.lecSize,
+.cost,
+.climate{
+  box-shadow:1px 2px 3px rgba(0,0,0, 0.1);
+  margin-top: -10px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+  justify-content: right;
+  width: 50vw;
+  height: 50vh;
+  min-width: 600px;
+  min-height: 300px;
+  border-radius: 15px;
+}
+
+/* .goodSTEM-text,
+.flexMajor-text,
+.curriculum-text,
+.research-text,
+.ruralCity-text,
+.alumNetwork-text,
+.spirit-text,
+.goodFoodAround-text,
+.diningHall-text{
+  padding-top: 70px;
+  padding-bottom: 10px;
+  font-size: 20px;
+  display: block;
+} */
+
+.goodArts-text,
+.goodSTEM-text,
+.flexMajor-text,
+.curriculum-text,
+.research-text,
+.ruralCity-text,
+.alumNetwork-text,
+.spirit-text,
+.goodFoodAround-text,
+.diningHall-text{
+  /* Adjust the styles as needed */
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.confirmPage-text{
+  padding-top: 70px;
+  padding-bottom: 10px;
+  font-size: 20px;
+  display: block;
+}
+
+.endPage-text{
+  padding-top: 50px;
+  padding-bottom: 10px;
+  font-size: 20px;
+  display: block;
+}
+
+.party-text,
+.intlStudent-text,
+.lecSize-text,
+.cost-text,
+.enrollment-text,
+.climate-text{
+  padding-top:10px;
+  font-size: 19px;
+  display: block;
+}
+
+.goodArts-radio input,
+.goodSTEM-radio input,
+.flexMajor-radio input,
+.curriculum-radio input,
+.research-radio input,
+.ruralCity-radio input,
+.alumNetwork-radio input,
+.spirit-radio input,
+.goodFoodAround-radio input,
+.diningHall-radio input{
+  width: 45px;
+}
+
+.button-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 35px;
+  height: 100%;
+}
+
+.back-button,
+.next-button{
+  padding: 10px 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #FFC46C;
+  font-size: 15px;
+  transition: opacity 0.1s;
+  cursor: pointer;
+  display: block;
+  box-shadow: 1px 2px 3px rgba(0,0,0, 0.1);
+}
+
+.back-button-confirm-page,
+.next-button-confirm-page{
+  padding: 10px 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #FFC46C;
+  font-size: 15px;
+  transition: opacity 0.1s;
+  cursor: pointer;
+  display: block;
+  box-shadow: 1px 2px 3px rgba(0,0,0, 0.1);
+  margin-top: 60px;
+}
+
+.back-button,
+.back-button-confirm-page{
+  margin-right: 450px;
+}
+
+.button-endpage{
+  padding: 10px 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #FFC46C;
+  font-size: 15px;
+  transition: opacity 0.1s;
+  cursor: pointer;
+  display: block;
+  box-shadow: 1px 2px 3px rgba(0,0,0, 0.1);
+  margin-top: 60px;
+}
+
+.all-features{
+  background-color: white;
+  height: 40px; 
+  display: flex;
+  align-items: center;
+  position:absolute;
+  left:0;
+  bottom: 80px;
+  right: 0;
+}
+
+.goodArts-radio,
+.goodSTEM-radio,
+.flexMajor-radio,
+.curriculum-radio,
+.research-radio,
+.ruralCity-radio,
+.alumNetwork-radio,
+.spirit-radio,
+.goodFoodAround-radio,
+.diningHall-radio{
+  display: flex;
+}
+
+.party-radio,
+.intlStudent-radio,
+.lecSize-radio,
+.cost-radio,
+.enrollment-radio{
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  justify-content: space-between;
+  font-size: 17px;
+  height: 200px;
+  margin-left: 15px;
+  width: 460px
+}
+
+.climate-radio{
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  justify-content: space-between;
+  font-size: 17px;
+  height: 70px;
+  margin-left: 15px;
+  width: 460px;
+  margin-top: 30px
+}
+
+.intlStudent-radio{
+  width: 460px
+}
+
+.radio-text{
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+  font-size: 17px;
+  margin-top: 10px;
+}
+
+.HomePage{
+  min-height: 70vh;
+}
