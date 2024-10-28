@@ -1,0 +1,112 @@
+# General
+.DS_Store
+Thumbs.db
+
+# Python (Conda)
+# Ignore Conda environment directories
+env/
+venv/
+conda-env/
+
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Ignore environment and settings files
+.env
+*.env
+
+# Node.js
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directories used by testing tools
+coverage/
+.nyc_output/
+
+# Grunt intermediate storage
+.grunt/
+
+# Bower dependency directory
+bower_components/
+
+# Build directories
+build/
+dist/
+.tmp/
+
+# Next.js build output
+.next/
+
+# Nuxt.js build output
+.nuxt/
+
+# Gatsby files
+.cache/
+public/
+
+# Parcel-bundler cache
+.cache/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Yarn v2
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# NPM package lock files
+package-lock.json
+yarn.lock
+
+# Docker
+# Ignore Docker files that may contain sensitive information
+*.swp
+*.swo
+docker-compose.override.yml
+
+# Logs and databases
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# Nginx
+nginx.conf
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
