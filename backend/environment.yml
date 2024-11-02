@@ -6,7 +6,13 @@ dependencies:
   # Core dependencies
   - python=3.9
   - flask
+  - flask-cors
+  - boto3
   - requests
+  - pip
   # Development dependencies
   - pytest
   - jupyter
+  # Pip dependencies
+  - pip:
+      - python-dotenv
