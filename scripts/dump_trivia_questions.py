@@ -5,6 +5,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 from sshtunnel import SSHTunnelForwarder
+import sys
 
 trivia_questions_path = Path("../data/trivia_questions.json")
 
@@ -24,12 +25,6 @@ db_user = os.getenv("DB_USER")
 db_password = os.getenv("DB_PASSWORD")
 db_name = "trivia_db"
 
-# print("ec2_ssh_key_path")
-# print(ec2_ssh_key_path)
-# print("ec2_host")
-# print(ec2_host)
-# print("ec2_ssh_key_path")
-# print(ec2_ssh_key_path)
 ssh_key = paramiko.RSAKey.from_private_key_file(ec2_ssh_key_path)
 
 with SSHTunnelForwarder(
