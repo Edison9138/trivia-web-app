@@ -41,5 +41,3 @@ while True:
 # Code 3: Token Not Found Session Token does not exist.
 # Code 4: Token Empty Session Token has returned all possible questions for the specified query. Resetting the Token is necessary.
 # Code 5: Rate Limit Too many requests have occurred. Each IP can only access the API once every 5 seconds.
-
-

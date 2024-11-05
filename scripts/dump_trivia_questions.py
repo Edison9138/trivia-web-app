@@ -5,7 +5,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 from sshtunnel import SSHTunnelForwarder
-import sys
 
 trivia_questions_path = Path("../data/trivia_questions.json")
 

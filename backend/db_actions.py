@@ -45,6 +45,7 @@ def get_trivia_questions(question_type, category, difficulty, count=10):
                 '''
                 cursor.execute(count_trivia_questions_command, (question_type, category, difficulty))
                 result = cursor.fetchall()
+                count = int(count)
 
                 if len(result) < count:
                     # print(f"len(result): {len(result)}")
@@ -62,14 +63,71 @@ def get_trivia_questions(question_type, category, difficulty, count=10):
                     "status": "success",
                     "data": result
                 }
-                # print(data)
+                print(data)
                 return data
         
         except Exception as e:
             logging.error(e)
             data = {
                 "status": "fail",
-                "data": str(e)
+                "data": str(e) # convert to json formate
+            }
+
+            return data
+        finally:
+            connection.close()
+            print("Connection closed")
+            # if no connection.commit(), data will not be saved
+
+def get_wrong_answers(question_id):
+    '''
+    Returns wrong answers of given question id
+    '''
+    with SSHTunnelForwarder(
+        (ec2_host, 22),
+        ssh_username=ec2_user,
+        ssh_pkey=ssh_key,
+        remote_bind_address=(db_host, 3306),
+        local_bind_address=('localhost', 3307) # 3306 was occupied by mysql server
+    ) as tunnel:
+        connection = pymysql.connect(
+            host="localhost",
+            port=tunnel.local_bind_port,
+            user=db_user,
+            password=db_password,
+            db=db_name,
+            cursorclass=pymysql.cursors.DictCursor # each row returned from db as a dictionary
+        )
+    
+        try:
+            with connection.cursor() as cursor:
+                count_trivia_questions_command = '''
+                select * from wrong_answers
+                where question_id = %s
+                '''
+                cursor.execute(count_trivia_questions_command, question_id)
+                result = cursor.fetchall()
+
+                if len(result) == 0:
+                    # print(f"len(result): {len(result)}")
+                    data = {
+                        "status": "fail",
+                        "data": f"Found 0 wrong answers for question_id: {question_id}"
+                    }
+                    return data
+                
+                data = {
+                    "status": "success",
+                    "data": result
+                }
+
+                return data
+        
+        except Exception as e:
+            logging.error(e)
+            data = {
+                "status": "fail",
+                "data": str(e) # convert to json formate
             }
 
             return data

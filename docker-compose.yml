@@ -5,6 +5,7 @@ services:
     build: ./backend
     container_name: backend
     volumes:
+      - /Users/edison/.ssh/key-pair-rds.pem:/root/.ssh/key-pair-rds.pem:ro
       - ./backend:/app
       - /app/conda-env  # Prevents conda environment from being overwritten
     ports:
