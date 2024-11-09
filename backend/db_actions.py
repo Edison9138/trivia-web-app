@@ -5,28 +5,27 @@ import os
 import logging
 import random
 from sshtunnel import SSHTunnelForwarder
+from contextlib import contextmanager
 
 load_dotenv()
 
-ec2_host=os.getenv("EC2_HOST")
-ec2_user=os.getenv("EC2_USER")
-ec2_ssh_key_path=os.getenv("EC2_SSH_KEY_PATH")
+ec2_host = os.getenv("EC2_HOST")
+ec2_user = os.getenv("EC2_USER")
+ec2_ssh_key_path = os.getenv("EC2_SSH_KEY_PATH")
 db_host = os.getenv("DB_HOST")
 db_user = os.getenv("DB_USER")
 db_password = os.getenv("DB_PASSWORD")
 db_name = "trivia_db"
 ssh_key = paramiko.RSAKey.from_private_key_file(ec2_ssh_key_path)
 
-def get_trivia_questions(question_type, category, difficulty, count=10):
-    '''
-    Returns number of trivia questions of given type, category, and difficulty
-    '''
+@contextmanager
+def get_db_connection():
     with SSHTunnelForwarder(
         (ec2_host, 22),
         ssh_username=ec2_user,
         ssh_pkey=ssh_key,
         remote_bind_address=(db_host, 3306),
-        local_bind_address=('localhost', 3307) # 3306 was occupied by mysql server
+        local_bind_address=('localhost', 3307)
     ) as tunnel:
         connection = pymysql.connect(
             host="localhost",
@@ -34,82 +33,75 @@ def get_trivia_questions(question_type, category, difficulty, count=10):
             user=db_user,
             password=db_password,
             db=db_name,
-            cursorclass=pymysql.cursors.DictCursor # each row returned from db as a dictionary
+            cursorclass=pymysql.cursors.DictCursor
         )
-    
+        try:
+            yield connection
+        finally:
+            connection.close()
+
+def get_trivia_questions(question_types, category, difficulties, count=10):
+    '''
+    Returns a number of trivia questions of given types, category, and difficulties.
+    '''
+    with get_db_connection() as connection:
         try:
             with connection.cursor() as cursor:
-                count_trivia_questions_command = '''
-                select * from trivia_questions
-                where question_type = %s and category = %s and difficulty = %s
-                '''
-                cursor.execute(count_trivia_questions_command, (question_type, category, difficulty))
-                result = cursor.fetchall()
-                count = int(count)
+                # dynamic placeholders for multi-value parameters
+                question_types_placeholders = ', '.join(['%s'] * len(question_types))
+                difficulties_placeholders = ', '.join(['%s'] * len(difficulties))
 
-                if len(result) < count:
-                    # print(f"len(result): {len(result)}")
-                    data = {
-                        "status": "fail",
-                        "data": f"no enough questions, max num of questions: {str(len(result))}"
-                    }
-                    # print(data)
-                    return data
+                query = f'''
+                SELECT * FROM trivia_questions
+                WHERE question_type IN ({question_types_placeholders})
+                AND category = %s
+                AND difficulty IN ({difficulties_placeholders})
+                '''
+
+                params = (*question_types, category, *difficulties)
+
+                # debug
+                print("Executing query:", cursor.mogrify(query, params))
+
+                cursor.execute(query, params)
+                result = cursor.fetchall()
+                available_count = len(result)
                 
-                if len(result) > count:
-                    result = random.sample(result, count) # without repeatition
-                # print(f"len(result): {len(result)}")
-                data = {
+                if available_count < int(count):
+                    return {
+                        "status": "fail",
+                        "data": f"Not enough questions. Available questions: {available_count}"
+                    }
+                
+                if available_count > int(count):
+                    result = random.sample(result, int(count))
+                
+                return {
                     "status": "success",
                     "data": result
                 }
-                print(data)
-                return data
-        
         except Exception as e:
-            logging.error(e)
-            data = {
+            logging.exception("Failed to retrieve trivia questions.")
+            return {
                 "status": "fail",
-                "data": str(e) # convert to json formate
+                "data": "An error occurred while fetching trivia questions."
             }
-
-            return data
-        finally:
-            connection.close()
-            print("Connection closed")
-            # if no connection.commit(), data will not be saved
 
 def get_wrong_answers(question_id):
     '''
-    Returns wrong answers of given question id
+    Returns wrong answers for a given question ID.
     '''
-    with SSHTunnelForwarder(
-        (ec2_host, 22),
-        ssh_username=ec2_user,
-        ssh_pkey=ssh_key,
-        remote_bind_address=(db_host, 3306),
-        local_bind_address=('localhost', 3307) # 3306 was occupied by mysql server
-    ) as tunnel:
-        connection = pymysql.connect(
-            host="localhost",
-            port=tunnel.local_bind_port,
-            user=db_user,
-            password=db_password,
-            db=db_name,
-            cursorclass=pymysql.cursors.DictCursor # each row returned from db as a dictionary
-        )
-    
+    with get_db_connection() as connection:
         try:
             with connection.cursor() as cursor:
-                count_trivia_questions_command = '''
-                select * from wrong_answers
-                where question_id = %s
+                query = '''
+                SELECT * FROM wrong_answers
+                WHERE question_id = %s
                 '''
-                cursor.execute(count_trivia_questions_command, question_id)
+                cursor.execute(query, (question_id,))
                 result = cursor.fetchall()
 
                 if len(result) == 0:
-                    # print(f"len(result): {len(result)}")
                     data = {
                         "status": "fail",
                         "data": f"Found 0 wrong answers for question_id: {question_id}"
@@ -124,17 +116,10 @@ def get_wrong_answers(question_id):
                 return data
         
         except Exception as e:
-            logging.error(e)
+            logging.exception("Failed to retrieve wrong answers.")
             data = {
                 "status": "fail",
-                "data": str(e) # convert to json formate
+                "data": "An error occurred while fetching wrong answers."
             }
-
             return data
-        finally:
-            connection.close()
-            print("Connection closed")
-            # if no connection.commit(), data will not be saved
 
-if __name__ == "__main__":
-    get_trivia_questions("boolean", "Politics", "hard", 4)
