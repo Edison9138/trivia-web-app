@@ -2,9 +2,11 @@ import requests
 from pathlib import Path
 import json
 import time
+import os
 
-# token = c7af32bb024eee7d99002fb00fb02a34a49fc2e68ceab45978951c883e93ccb6
-url = "https://opentdb.com/api.php?amount=1&token=c7af32bb024eee7d99002fb00fb02a34a49fc2e68ceab45978951c883e93ccb6"
+open_trivia_db_token = os.getenv("OPEN_TRIVIA_DB_TOKEN")
+
+url = f"https://opentdb.com/api.php?amount=1&token={open_trivia_db_token}"
 save_path = Path("../data/trivia_questions.json")
 
 if save_path.exists() and save_path.stat().st_size != 0: # also check for existed empty file
