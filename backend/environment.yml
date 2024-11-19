@@ -15,7 +15,6 @@ dependencies:
   - python-dotenv
   - pip
   # Development dependencies
-  - argparse
   - pytest
   - jupyter
   # Pip dependencies
