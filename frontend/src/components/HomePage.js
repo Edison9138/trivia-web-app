@@ -1,21 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 function HomePage(props) {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("")
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    props.handleEmailChange(email)
-  };
-  
-  function handleEmailInput (e) {
-    setEmail(() => {
-      return e.target.value
-    })
-  }
 
   return (
     <motion.div
@@ -26,35 +14,29 @@ function HomePage(props) {
     >
       <div className="info-email-container">
         <div className="info">
-          <p className="info-header">🏫 Beyond Taiwan College Matching App</p>
-          <p className="info-text">
-            Beyond Taiwan is dedicated to helping you find the best education.
-            Using the information from the form, we will list some schools that
-            fit you the best. <br />
-            Unlike simple matching with just GPA and standardized testing
-            scores, this matching program incorporates opinions regarding
-            several school features from our large pool of alumni and students
-            from numerous institutions. <br />
-            <br />
-            We hope this form (with 16 questions) brings you another way of
-            researching your college list! 😉
-          </p>
+          <h1 className="info-header">🎪 Trivia Game 🎪</h1>
+          <div className="info-text">
+            <p>
+              Welcome to the Trivia Game! Featuring 4,148 questions sourced from the{" "}
+              <a href="https://opentdb.com/" target="_blank" rel="noopener noreferrer">
+                Open Trivia DB
+              </a>
+              , this game allows you to customize your experience by filtering questions based on
+              categories, difficulty levels, and question types.
+            </p>
+            <p>
+              Choose the number of questions you'd like to play, test your knowledge, and receive a
+              score at the end. Have fun and challenge yourself!
+            </p>
+          </div>
         </div>
-        <form className="email" onSubmit={handleSubmit}>
+        <form className="email">
           <div className="email-form">
-            <input
-              type="email"
-              placeholder="Enter your email for results"
-              className="email-input"
-              onChange={handleEmailInput}
-              name="email"
-              value = {email}
-            />
             <button
               className="start-button"
-              type="submit"
+              type="button"
               onClick={() => {
-                navigate("/goodArts");
+                navigate("/filterQuestions");
               }}
             >
               Continue

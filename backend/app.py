@@ -3,6 +3,7 @@ from flask_cors import CORS
 from db_actions import get_trivia_questions, get_wrong_answers
 import math
 import logging
+import random
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -32,6 +33,39 @@ def home():
 # In a RESTful API, POST is the standard for submitting complex queries or performing actions that involve processing or computations.
 @app.route('/get-questions', methods=['POST'])  # Changed to POST and hyphenated endpoint
 def get_questions():
+    """
+    Endpoint to retrieve trivia questions based on parameters provided in the request body.
+
+    Required parameters:
+
+    - `question_types`: List of question types (e.g. boolean, multiple)
+    - `category`: Category of questions (e.g. Animals, History)
+    - `difficulties`: List of difficulties (e.g. easy, medium, hard)
+
+    Optional parameters:
+
+    - `count`: Number of questions to retrieve (default: 10)
+
+    Returns a JSON response with the following format:
+
+    {
+        "status": "success",
+        "data": {
+            "questions": [...],
+            "correct_answers": [...],
+            "wrong_answers": [...],
+            "question_ids": [...]
+        }
+    }
+
+    If there are any errors, returns a JSON response with a 400 status code and the following format:
+
+    {
+        "status": "fail",
+        "data": "<error message>"
+    }
+    """
+    
     try:
         # Get data from request body instead of URL parameters
         data = request.get_json()
@@ -63,7 +97,7 @@ def get_questions():
         formatted_data = {
             "questions": [],
             "correct_answers": [],
-            "wrong_answers": [],
+            "answers": [],
             "question_ids": []
         }
 
@@ -88,7 +122,9 @@ def get_questions():
             # Add question data to formatted response
             formatted_data["questions"].append(question["question"])
             formatted_data["correct_answers"].append(question["correct_answer"])
-            formatted_data["wrong_answers"].append(wrong_answers)
+            all_answers = [question["correct_answer"]] + wrong_answers
+            random.shuffle(all_answers)
+            formatted_data["answers"].append(all_answers)
             formatted_data["question_ids"].append(question_id)
 
 
@@ -100,7 +136,7 @@ def get_questions():
         logger.exception("Error processing question request")
         return create_error_response(str(e), 500)
 
-@app.route('/calculate-score', methods=['POST'])  # Changed to hyphenated endpoint
+@app.route('/calculate-score', methods=['POST'])
 def calculate_score():
     try:
         data = request.get_json()
@@ -122,12 +158,11 @@ def calculate_score():
             )
 
         # Calculate score
-        score_per_question = 100 / len(correct_answers)
-        user_score = sum(
-            score_per_question 
-            for ua, ca in zip(user_answers, correct_answers) 
-            if ua == ca
+        total_questions = len(correct_answers)
+        correct_count = sum(
+            1 for ua, ca in zip(user_answers, correct_answers) if ua == ca
         )
+        user_score = (correct_count / total_questions) * 100
         final_score = min(100, math.ceil(user_score))
 
         success_response = create_success_response({"user_score": final_score})

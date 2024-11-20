@@ -16,9 +16,10 @@ else:
 
 load_dotenv()
 
-ec2_host=os.getenv("EC2_HOST")
+# ec2_host=os.getenv("EC2_HOST")
 ec2_user=os.getenv("EC2_USER")
-ec2_ssh_key_path=os.getenv("EC2_SSH_KEY_PATH")
+# ec2_ssh_key_path=os.getenv("EC2_SSH_KEY_PATH")
+ec2_ssh_key_path="/Users/edison/.ssh/key-pair-rds.pem"
 db_host = os.getenv("DB_HOST")
 db_user = os.getenv("DB_USER")
 db_password = os.getenv("DB_PASSWORD")
@@ -27,7 +28,7 @@ db_name = "trivia_db"
 ssh_key = paramiko.RSAKey.from_private_key_file(ec2_ssh_key_path)
 
 with SSHTunnelForwarder(
-    (ec2_host, 22),
+    ("ec2-54-221-188-184.compute-1.amazonaws.com", 22),
     ssh_username=ec2_user,
     ssh_pkey=ssh_key,
     remote_bind_address=(db_host, 3306),

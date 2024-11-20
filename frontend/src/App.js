@@ -4,56 +4,40 @@ import Footer from "./components/Footer";
 import AnimatedRoutes from "./components/AnimatedRoutes";
 import React, { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+// import { GoogleLogin } from '@react-oauth/google';
 
 function App() {
 
-  const [email, setEmail] = useState("")
+  const responseMessage = (response) => {
+    console.log(response);
+  };
+  const errorMessage = (error) => {
+      console.log(error);
+  };
 
-  const [features, setFeatures] = useState({
-    good_arts: null,
-    goodSTEM: null,
-    flexMajor: null,
-    curriculum: null,
-    research: null,
-    party: null,
-    ruralCity: null,
-    alumNetwork: null,
-    intlStudent: null,
-    lecSize: null,
-    enrollment: null,
-    climate: null,
-    spirit: null,
-    goodFoodAround: null,
-    diningHall: null,
-    cost: null,
+  const [questionsData, setQuestionsData] = useState({
+    questions: [],
+    correct_answers: [],
+    answers: [],
+    question_ids: [],
   });
 
-  const handleEmailChange = (email) => {
-    setEmail(() => {
-      return {
-        email
-      };
-    });
-  }
-
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setFeatures((prevFeatures) => {
-      return {
-        ...prevFeatures,
-        [name] : value,
-      };
-    });
-  }
+  const updateQuestions = (data) => {
+    setQuestionsData(data);
+  };
 
   return (
     <Router>
       <div className="app">
+        {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
         <Header />
         <main className="main">
-          <AnimatedRoutes handle_change={handleChange} features={features} handleEmailChange = {handleEmailChange} email = {email}/>
+          <AnimatedRoutes
+            questionsData={questionsData}
+            updateQuestions={updateQuestions}
+          />
         </main>
-        <Footer features={features} />
+        <Footer />
       </div>
     </Router>
   );

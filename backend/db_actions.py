@@ -61,12 +61,6 @@ def create_success_response(data: Union[List, Dict]) -> Dict:
 def get_db_connection() -> Generator[pymysql.connections.Connection, None, None]:
     """
     Create a database connection using SSH tunnel.
-    
-    Yields:
-        pymysql.connections.Connection: Database connection object
-    
-    Raises:
-        Exception: If connection fails
     """
     tunnel = None
     connection = None
@@ -113,15 +107,6 @@ def get_trivia_questions(
 ) -> Dict:
     """
     Fetch trivia questions based on specified criteria.
-    
-    Args:
-        question_types (List[str]): List of question types
-        category (str): Question category
-        difficulties (List[str]): List of difficulty levels
-        count (int, optional): Number of questions to return. Defaults to 10.
-    
-    Returns:
-        Dict: Response containing status and data/error message
     """
     # Validate input parameters
     if not all([question_types, category, difficulties]):
@@ -175,12 +160,6 @@ def get_trivia_questions(
 def get_wrong_answers(question_id: int) -> Dict:
     """
     Fetch wrong answers for a specific question.
-    
-    Args:
-        question_id (int): ID of the question
-    
-    Returns:
-        Dict: Response containing status and data/error message
     """
     if not question_id:
         logger.error("Missing question_id parameter")
@@ -214,9 +193,6 @@ def get_wrong_answers(question_id: int) -> Dict:
 def health_check() -> Dict:
     """
     Check database connection health.
-    
-    Returns:
-        Dict: Response containing connection status
     """
     try:
         with get_db_connection() as connection:

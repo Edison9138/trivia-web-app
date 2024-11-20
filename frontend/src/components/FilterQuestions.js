@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
 
-export default function FilterQuestions(props) {
+export default function FilterQuestions({ updateQuestions }) {
   const navigate = useNavigate();
 
   const difficulties = ["Easy", "Medium", "Hard"];
@@ -20,7 +20,7 @@ export default function FilterQuestions(props) {
   const [selectedDifficulties, setSelectedDifficulties] = useState(new Set());
   const [selectedTypes, setSelectedTypes] = useState(new Set());
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [questionCount, setQuestionCount] = useState("");
+  const [questionCount, setQuestionCount] = useState(0);
   const [isFormValid, setIsFormValid] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
 
@@ -73,6 +73,8 @@ export default function FilterQuestions(props) {
       } else {
         // Clear warning message and navigate if enough questions are available
         setWarningMessage("");
+        // Update questions in App.js
+        updateQuestions(data.data);
         navigate("/question");
       }
     } catch (error) {
@@ -81,88 +83,99 @@ export default function FilterQuestions(props) {
     }
   };
   
-
   return (
-    <div>
-      <motion.div
-        initial={{ opacity: 0, transition: { duration: 0.25 } }}
-        animate={{ opacity: 1, transition: { duration: 0.25 } }}
-        exit={{ opacity: 0, transition: { duration: 0.25 } }}
-      >
-        <form className="filterQuestions">
-          <p className="filterQuestions-text">
-            Please filter the questions for your game
-          </p>
-          <div className="filterQuestions-options">
-
-            <div className="category-dropdown">
-              <h4>Category</h4>
-              <select name="category" onChange={handleCategoryChange} required>
-                <option value="">Select a category</option> {/* dummy placeholder */}
-                {categories.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="difficulty-options">
-              <h4>Difficulty</h4>
-              {difficulties.map((difficulty) => (
-                <label key={difficulty}>
-                  <input
-                    type="checkbox"
-                    name="difficulty"
-                    value={difficulty}
-                    checked={selectedDifficulties.has(difficulty)}
-                    onChange={(event) => handleCheckboxChange(event, setSelectedDifficulties, selectedDifficulties)}
-                  />
-                  {difficulty}
-                </label>
+    <motion.div
+      className="filterQuestionsPage"
+      initial={{ opacity: 0, transition: { duration: 0.25 } }}
+      animate={{ opacity: 1, transition: { duration: 0.25 } }}
+      exit={{ opacity: 0, transition: { duration: 0.25 } }}
+    >
+      <form>
+        <p className="filterQuestions-text">
+          Please filter the questions for your game
+        </p>
+        <div className="filterQuestions-options">
+          {/* Category Dropdown */}
+          <div className="category-dropdown">
+            <h4>Category</h4>
+            <select name="category" onChange={handleCategoryChange} required>
+              <option value="">Select a category</option>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
               ))}
-            </div>
-
-            <div className="type-options">
-              <h4>Question Type</h4>
-              {questionTypes.map((type) => (
-                <label key={type}> {/* key attribute is required by React to uniquely identify each item in a list */}
-                  <input
-                    type="checkbox"
-                    name="type"
-                    // name="type" is optional, name="type" attribute could group these checkboxes under "type" for easier form handling
-                    value={type}
-                    checked={selectedTypes.has(type)}
-                    onChange={(event) => handleCheckboxChange(event, setSelectedTypes, selectedTypes)}
-                  />
-                  {type}
-                </label>
-              ))}
-            </div>
-
-            <div className="question-count">
-              <h4>Number of Questions</h4>
-              <input
-                type="number"
-                min="1"
-                value={questionCount}
-                onChange={(e) => setQuestionCount(e.target.value)}
-              />
-              {warningMessage && <p style={{ color: 'red' }}>{warningMessage}</p>}
-            </div>
-
+            </select>
           </div>
-        </form>
-        <div className="button-container">
-          <button
-            className="next-button"
-            onClick={handleNextClick}
-            disabled={!isFormValid} // Disable the button if form is incomplete
-          >
-            Next
-          </button>
+
+          {/* Difficulty Options */}
+          <div className="difficulty-options">
+            <h4>Difficulty</h4>
+            {difficulties.map((difficulty) => (
+              <label key={difficulty}>
+                <input
+                  className="difficulty-option"
+                  type="checkbox"
+                  name="difficulty"
+                  value={difficulty}
+                  checked={selectedDifficulties.has(difficulty)}
+                  onChange={(event) =>
+                    handleCheckboxChange(
+                      event,
+                      setSelectedDifficulties,
+                      selectedDifficulties
+                    )
+                  }
+                />
+                {difficulty}
+              </label>
+            ))}
+          </div>
+
+          {/* Question Type Options */}
+          <div className="type-options">
+            <h4>Question Type</h4>
+            {questionTypes.map((type) => (
+              <label key={type}>
+                <input
+                  className="type-option"
+                  type="checkbox"
+                  name="type"
+                  value={type}
+                  checked={selectedTypes.has(type)}
+                  onChange={(event) =>
+                    handleCheckboxChange(event, setSelectedTypes, selectedTypes)
+                  }
+                />
+                {type}
+              </label>
+            ))}
+          </div>
+
+          {/* Question Count */}
+          <div className="question-count">
+            <h4>Number of Questions</h4>
+            <input
+              type="number"
+              min="1"
+              value={questionCount}
+              onChange={(e) => setQuestionCount(e.target.value)}
+            />
+            {warningMessage && (
+              <p style={{ color: "red" }}>{warningMessage}</p>
+            )}
+          </div>
         </div>
-      </motion.div>
-    </div>
+      </form>
+      <div className="button-container">
+        <button
+          className="next-button"
+          onClick={handleNextClick}
+          disabled={!isFormValid}
+        >
+          Next
+        </button>
+      </div>
+    </motion.div>
   );
 }
