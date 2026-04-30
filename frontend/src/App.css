@@ -337,9 +337,9 @@ body {
 .filterQuestionsPage {
   margin: 0 auto;             /* Center horizontally without extra top/bottom margins */
   padding: 20px;
-  width: 80%;
+  width: calc(100% - 32px);
   max-width: 800px;           /* Adjust as needed */
-  min-width: 400px;
+  box-sizing: border-box;
   background-color: white;
   border-radius: 15px;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
@@ -348,25 +348,21 @@ body {
 .questionPage {
   margin: 0 auto;             /* Center horizontally */
   padding: 20px;
-  width: 800px;               /* Fixed width */
+  width: calc(100% - 32px);
+  max-width: 800px;
+  box-sizing: border-box;
   background-color: white;
   border-radius: 15px;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
-}
-
-@media (max-width: 800px) {
-  .questionPage {
-    width: 100%;             /* Full width on smaller screens */
-  }
 }
 
 .HomePage 
 {
   margin: 0 auto;            
   padding: 20px;
-  width: 60%;
+  width: calc(100% - 32px);
   max-width: 800px;         
-  min-width: 800px;
+  box-sizing: border-box;
   background-color: white;
   border-radius: 15px;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
@@ -375,10 +371,6 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 80vh;
-}
-
-.filterQuestionsPage {
-  width: 100%;
 }
 
 .questionPage h2,
@@ -399,11 +391,14 @@ body {
 
 .questionPage .options-container {
   width: 100%;
-  margin: 20px 0;
-  padding-left: 200px;
+  max-width: 480px;
+  margin: 20px auto;
+  padding-left: 0;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
+  text-align: left;
 }
 /* .questionPage .options-container {
   width: 100%;               
@@ -430,6 +425,7 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
+  min-width: 0;
   margin-bottom: 10px;
 }
 
@@ -443,9 +439,29 @@ body {
 } */
 
 .questionPage .option label {
+  flex: 1;
   margin-left: 10px;
+  min-width: 0;
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+@media (max-width: 500px) {
+  .filterQuestionsPage,
+  .questionPage,
+  .HomePage,
+  .endPage {
+    width: calc(100% - 24px);
+    padding: 16px;
+  }
+
+  .questionPage .options-container {
+    max-width: 100%;
+  }
+
+  .start-button {
+    margin-left: 0;
+  }
 }
 
 .questionPage .progress-container {
