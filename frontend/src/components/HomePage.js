@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-function HomePage(props) {
+function HomePage() {
   const navigate = useNavigate();
 
   return (

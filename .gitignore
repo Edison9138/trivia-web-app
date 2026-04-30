@@ -62,6 +62,8 @@ dist/
 # Gatsby files
 .cache/
 public/
+!frontend/public/
+!frontend/public/**
 
 # Parcel-bundler cache
 .cache/

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
-export default function EndPage(props) {
+export default function EndPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -28,7 +28,6 @@ export default function EndPage(props) {
       animate={{ opacity: 1, transition: { duration: 0.25 } }}
       exit={{ opacity: 0, transition: { duration: 0.25 } }}
     >
-      <h2 className="endPage-text"></h2>
       <p className="endPage-text">Completed!<br/> <br/>Your score: {score}%</p>
       <div className="button-container">
         <button

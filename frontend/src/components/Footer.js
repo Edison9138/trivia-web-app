@@ -1,29 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React from "react";
 
-export default function Footer(props) {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    // Update windowWidth state when the window is resized
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
+export default function Footer() {
   return (
     <div className="footer">
-    <nav className="bottom-bar-no-questions">
-      <div className="logo-container">
+      <nav className="bottom-bar-no-questions">
+        <div className="logo-container">
           <a
             className="website-logo-link"
             href="https://edison910308.wixsite.com/eliao"
@@ -49,7 +30,7 @@ export default function Footer(props) {
             />
           </a>
         </div>
-    </nav>
-  </div>
-  )
+      </nav>
+    </div>
+  );
 }
