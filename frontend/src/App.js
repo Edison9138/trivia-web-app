@@ -4,17 +4,8 @@ import Footer from "./components/Footer";
 import AnimatedRoutes from "./components/AnimatedRoutes";
 import React, { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-// import { GoogleLogin } from '@react-oauth/google';
 
 function App() {
-
-  const responseMessage = (response) => {
-    console.log(response);
-  };
-  const errorMessage = (error) => {
-      console.log(error);
-  };
-
   const [questionsData, setQuestionsData] = useState({
     questions: [],
     answers: [],
@@ -28,7 +19,6 @@ function App() {
   return (
     <Router>
       <div className="app">
-        {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
         <Header />
         <main className="main">
           <AnimatedRoutes
