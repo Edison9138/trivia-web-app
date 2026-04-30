@@ -1,12 +1,17 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import axios from "axios";
+import apiClient from "../apiClient";
 import Question from "./Question";
 
-jest.mock("axios");
+jest.mock("../apiClient", () => ({
+  __esModule: true,
+  default: {
+    post: jest.fn(),
+  },
+}));
 
 test("submits question ids and user answers without correct answers", async () => {
-  axios.post.mockResolvedValueOnce({
+  apiClient.post.mockResolvedValueOnce({
     data: {
       status: "success",
       data: {
@@ -31,9 +36,9 @@ test("submits question ids and user answers without correct answers", async () =
   fireEvent.click(screen.getByLabelText("Correct answer"));
   fireEvent.click(screen.getByRole("button", { name: /submit/i }));
 
-  await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(1));
-  expect(axios.post).toHaveBeenCalledWith(
-    "http://localhost:5001/calculate-score",
+  await waitFor(() => expect(apiClient.post).toHaveBeenCalledTimes(1));
+  expect(apiClient.post).toHaveBeenCalledWith(
+    "/calculate-score",
     {
       user_answers: ["Correct answer"],
       question_ids: [42],

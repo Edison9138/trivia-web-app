@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
-import axios from "axios";
+import apiClient from "../apiClient";
 
 const Question = ({ questionsData }) => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Question = ({ questionsData }) => {
   // Handle submission of answers
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("http://localhost:5001/calculate-score", {
+      const response = await apiClient.post("/calculate-score", {
         user_answers: question_ids.map((_, index) => userAnswers[index]),
         question_ids: question_ids,
       });

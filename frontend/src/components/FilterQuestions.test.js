@@ -1,9 +1,14 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import axios from "axios";
+import apiClient from "../apiClient";
 import FilterQuestions from "./FilterQuestions";
 
-jest.mock("axios");
+jest.mock("../apiClient", () => ({
+  __esModule: true,
+  default: {
+    post: jest.fn(),
+  },
+}));
 
 function fillRequiredFilters() {
   fireEvent.change(screen.getByRole("combobox"), {
@@ -26,7 +31,7 @@ function renderFilterQuestions(updateQuestions = jest.fn()) {
 
 test("submits boolean for true false questions", async () => {
   const updateQuestions = jest.fn();
-  axios.post.mockResolvedValueOnce({
+  apiClient.post.mockResolvedValueOnce({
     data: {
       status: "success",
       data: {
@@ -42,8 +47,8 @@ test("submits boolean for true false questions", async () => {
   fireEvent.click(screen.getByRole("button", { name: /next/i }));
 
   await waitFor(() => expect(updateQuestions).toHaveBeenCalledTimes(1));
-  expect(axios.post).toHaveBeenCalledWith(
-    "http://localhost:5001/get-questions",
+  expect(apiClient.post).toHaveBeenCalledWith(
+    "/get-questions",
     {
       question_types: ["boolean"],
       category: "Animals",
@@ -54,7 +59,7 @@ test("submits boolean for true false questions", async () => {
 });
 
 test("shows structured backend errors returned with non-2xx responses", async () => {
-  axios.post.mockRejectedValueOnce({
+  apiClient.post.mockRejectedValueOnce({
     response: {
       data: {
         status: "fail",

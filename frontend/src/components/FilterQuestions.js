@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import axios from "axios";
+import apiClient from "../apiClient";
 
 export default function FilterQuestions({ updateQuestions }) {
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ export default function FilterQuestions({ updateQuestions }) {
   
     try {
       // Send a POST request with a JSON payload
-      const response = await axios.post("http://localhost:5001/get-questions", {
+      const response = await apiClient.post("/get-questions", {
         question_types: selectedTypesArray,
         category: selectedCategory,
         difficulties: selectedDifficultiesArray,
