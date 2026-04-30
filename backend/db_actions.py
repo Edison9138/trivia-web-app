@@ -151,6 +151,48 @@ def get_trivia_questions(
                 if available_count > int(count):
                     result = random.sample(result, int(count))
 
+                if not result:
+                    return create_success_response(result)
+
+                question_ids = [question["id"] for question in result]
+                question_id_placeholders = ', '.join(['%s'] * len(question_ids))
+                wrong_answers_query = f'''
+                SELECT id, question_id, wrong_answer
+                FROM wrong_answers
+                WHERE question_id IN ({question_id_placeholders})
+                ORDER BY question_id, id
+                '''
+
+                cursor.execute(wrong_answers_query, tuple(question_ids))
+                wrong_answers_result = cursor.fetchall()
+                wrong_answers_by_question_id = {
+                    question_id: []
+                    for question_id in question_ids
+                }
+
+                for wrong_answer in wrong_answers_result:
+                    wrong_answers_by_question_id[
+                        wrong_answer["question_id"]
+                    ].append(wrong_answer["wrong_answer"])
+
+                missing_wrong_answers = [
+                    question_id
+                    for question_id, wrong_answers in wrong_answers_by_question_id.items()
+                    if not wrong_answers
+                ]
+                if missing_wrong_answers:
+                    logger.warning(
+                        f"No wrong answers found for question ids: {missing_wrong_answers}"
+                    )
+                    return create_error_response(
+                        "No wrong answers found for all selected questions"
+                    )
+
+                for question in result:
+                    question["wrong_answers"] = wrong_answers_by_question_id[
+                        question["id"]
+                    ]
+
                 return create_success_response(result)
 
     except Exception as e:

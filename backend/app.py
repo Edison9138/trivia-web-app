@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from db_actions import get_correct_answers, get_trivia_questions, get_wrong_answers
+from db_actions import get_correct_answers, get_trivia_questions
 import math
 import logging
 import random
@@ -129,7 +129,7 @@ def get_questions():
         if response["status"] == "fail":
             return create_error_response(response["data"])
 
-        # Process questions and get wrong answers
+        # Process questions and answers
         questions_data = response["data"]
         formatted_data = {
             "questions": [],
@@ -140,20 +140,7 @@ def get_questions():
         # Process each question
         for question in questions_data:
             question_id = question["id"]
-            
-            # Get wrong answers for this question
-            wrong_answers_response = get_wrong_answers(question_id)
-            if wrong_answers_response["status"] != "success":
-                logger.warning(f"Failed to get wrong answers for question {question_id}")
-                continue
-
-            # Format wrong answers based on question type
-            wrong_answers_data = wrong_answers_response["data"]
-            wrong_answers = (
-                [wrong_answers_data[0]["wrong_answer"]]  # For true/false
-                if len(wrong_answers_data) == 1
-                else [entry["wrong_answer"] for entry in wrong_answers_data]  # For multiple choice
-            )
+            wrong_answers = question["wrong_answers"]
 
             # Add question data to formatted response
             formatted_data["questions"].append(question["question"])
