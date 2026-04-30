@@ -78,10 +78,6 @@ public/
 .yarn/install-state.gz
 .pnp.*
 
-# NPM package lock files
-package-lock.json
-yarn.lock
-
 # Docker
 # Ignore Docker files that may contain sensitive information
 *.swp
@@ -90,6 +86,7 @@ docker-compose.override.yml
 
 # Logs and databases
 *.sql
+!database/schema.sql
 *.sqlite
 *.sqlite3
 *.db
