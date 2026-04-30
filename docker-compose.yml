@@ -1,23 +1,26 @@
-version: "3.9"
-
 services:
   backend:
     build: ./backend
     container_name: backend
     volumes:
-      - /Users/edison/.ssh/key-pair-rds.pem:/root/.ssh/key-pair-rds.pem:ro
       - ./backend:/app
       - /app/conda-env  # Prevents conda environment from being overwritten
+    secrets:
+      - ec2_ssh_key
     ports:
-      - "5001:5001"  # Maps container's 5001 to host's 5001
+      - "${BACKEND_PORT:-5001}:5001"  # Maps host port to container's 5001
     environment:
-      - FLASK_APP=app.py
-      - FLASK_ENV=development
-      - FLASK_RUN_HOST=0.0.0.0
-      - FLASK_RUN_PORT=5001  # Specify Flask port
-      - FLASK_DEBUG=1  # Enable hot-reloading for development
-      - PYTHONUNBUFFERED=1
-      - CONDA_DEFAULT_ENV=flask_app_dev_env  # Specify your conda environment name
+      FLASK_ENV: development
+      FLASK_DEBUG: "1"  # Enable hot-reloading for development
+      PYTHONUNBUFFERED: "1"
+      CONDA_DEFAULT_ENV: flask_app_dev_env  # Specify your conda environment name
+      EC2_HOST: ${EC2_HOST:?Set EC2_HOST in .env}
+      EC2_USER: ${EC2_USER:?Set EC2_USER in .env}
+      EC2_SSH_KEY_PATH: /run/secrets/ec2_ssh_key
+      DB_HOST: ${DB_HOST:?Set DB_HOST in .env}
+      DB_USER: ${DB_USER:?Set DB_USER in .env}
+      DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+      DB_NAME: ${DB_NAME:-trivia_db}
     restart: unless-stopped
     networks:
       - app-network
@@ -29,10 +32,11 @@ services:
       - ./frontend:/app
       - /app/node_modules
     ports:
-      - "3000:3000"
+      - "${FRONTEND_PORT:-3000}:3000"
     environment:
-      - WATCHPACK_POLLING=true
-      - CHOKIDAR_USEPOLLING=true
+      WATCHPACK_POLLING: "true"
+      CHOKIDAR_USEPOLLING: "true"
+      REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL:-http://localhost:5001}
     depends_on:
       - backend
     restart: unless-stopped
@@ -42,3 +46,7 @@ services:
 networks:
   app-network:
     driver: bridge
+
+secrets:
+  ec2_ssh_key:
+    file: ${EC2_SSH_KEY_HOST_PATH:?Set EC2_SSH_KEY_HOST_PATH in .env to the host path of your SSH private key}

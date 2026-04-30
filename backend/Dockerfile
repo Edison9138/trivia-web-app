@@ -17,7 +17,12 @@ SHELL ["conda", "run", "-n", "flask_app_dev_env", "/bin/bash", "-c"]
 # Copy the rest of the application
 COPY . .
 
+ENV FLASK_APP=app.py \
+    FLASK_RUN_HOST=0.0.0.0 \
+    FLASK_RUN_PORT=5001 \
+    PYTHONUNBUFFERED=1
+
 EXPOSE 5001
 
 # Run Flask application using the conda environment
-CMD ["conda", "run", "--no-capture-output", "-n", "flask_app_dev_env", "flask", "run", "--host=0.0.0.0"]
+CMD ["conda", "run", "--no-capture-output", "-n", "flask_app_dev_env", "flask", "run"]

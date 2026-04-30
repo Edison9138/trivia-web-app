@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import math
 import logging
+import os
 import random
 
 # Configure logging
@@ -232,4 +233,7 @@ def internal_error(error):
     return create_error_response("Internal server error", 500)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001)  # Changed to 0.0.0.0 for Docker compatibility
+    app.run(
+        host=os.getenv("FLASK_RUN_HOST", "0.0.0.0"),
+        port=int(os.getenv("FLASK_RUN_PORT", "5001")),
+    )
