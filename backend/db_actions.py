@@ -15,32 +15,40 @@ logger = logging.getLogger(__name__)
 # Load environment variables
 load_dotenv()
 
-# Database configuration
-DB_CONFIG = {
-    'ec2_host': os.getenv("EC2_HOST"),
-    'ec2_user': os.getenv("EC2_USER"),
-    'ec2_ssh_key_path': os.getenv("EC2_SSH_KEY_PATH"),
-    'db_host': os.getenv("DB_HOST"),
-    'db_user': os.getenv("DB_USER"),
-    'db_password': os.getenv("DB_PASSWORD"),
-    'db_name': "trivia_db"
-}
-
-# Validate environment variables
-required_env_vars = [
+REQUIRED_ENV_VARS = [
     "EC2_HOST", "EC2_USER", "EC2_SSH_KEY_PATH",
     "DB_HOST", "DB_USER", "DB_PASSWORD"
 ]
 
-for var in required_env_vars:
-    if not os.getenv(var):
-        raise EnvironmentError(f"Missing required environment variable: {var}")
+def get_db_config() -> Dict[str, str]:
+    """Load and validate database configuration when a database call is made."""
+    missing_env_vars = [
+        var
+        for var in REQUIRED_ENV_VARS
+        if not os.getenv(var)
+    ]
+    if missing_env_vars:
+        missing_env_vars_text = ", ".join(missing_env_vars)
+        raise EnvironmentError(
+            f"Missing required environment variables: {missing_env_vars_text}"
+        )
 
-try:
-    ssh_key = paramiko.RSAKey.from_private_key_file(DB_CONFIG['ec2_ssh_key_path'])
-except Exception as e:
-    logger.error(f"Failed to load SSH key: {str(e)}")
-    raise
+    return {
+        'ec2_host': os.getenv("EC2_HOST"),
+        'ec2_user': os.getenv("EC2_USER"),
+        'ec2_ssh_key_path': os.getenv("EC2_SSH_KEY_PATH"),
+        'db_host': os.getenv("DB_HOST"),
+        'db_user': os.getenv("DB_USER"),
+        'db_password': os.getenv("DB_PASSWORD"),
+        'db_name': os.getenv("DB_NAME", "trivia_db")
+    }
+
+def load_ssh_key(ssh_key_path: str):
+    try:
+        return paramiko.RSAKey.from_private_key_file(ssh_key_path)
+    except Exception as e:
+        logger.error(f"Failed to load SSH key: {str(e)}")
+        raise
 
 def create_error_response(message: str) -> Dict:
     """Create a standardized error response"""
@@ -66,12 +74,15 @@ def get_db_connection() -> Generator[pymysql.connections.Connection, None, None]
     connection = None
 
     try:
+        db_config = get_db_config()
+        ssh_key = load_ssh_key(db_config['ec2_ssh_key_path'])
+
         # Establish SSH tunnel
         tunnel = SSHTunnelForwarder(
-            (DB_CONFIG['ec2_host'], 22), # 22 is the default ssh port
-            ssh_username=DB_CONFIG['ec2_user'],
+            (db_config['ec2_host'], 22), # 22 is the default ssh port
+            ssh_username=db_config['ec2_user'],
             ssh_pkey=ssh_key,
-            remote_bind_address=(DB_CONFIG['db_host'], 3306), # 3306 for ec2
+            remote_bind_address=(db_config['db_host'], 3306), # 3306 for ec2
             local_bind_address=('localhost', 3307)
         )
         tunnel.start()
@@ -80,9 +91,9 @@ def get_db_connection() -> Generator[pymysql.connections.Connection, None, None]
         connection = pymysql.connect(
             host="localhost",
             port=tunnel.local_bind_port,
-            user=DB_CONFIG['db_user'],
-            password=DB_CONFIG['db_password'],
-            db=DB_CONFIG['db_name'],
+            user=db_config['db_user'],
+            password=db_config['db_password'],
+            db=db_config['db_name'],
             cursorclass=pymysql.cursors.DictCursor
         )
         

@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from db_actions import get_correct_answers, get_trivia_questions
 import math
 import logging
 import random
@@ -124,6 +123,8 @@ def get_questions():
         logger.info(f"Received request with: types={question_types}, "
                    f"category={category}, difficulties={difficulties}, count={count}")
 
+        from db_actions import get_trivia_questions
+
         # Get questions from database
         response = get_trivia_questions(question_types, category, difficulties, count)
         if response["status"] == "fail":
@@ -193,6 +194,8 @@ def calculate_score():
             question_ids = [int(question_id) for question_id in question_ids]
         except (TypeError, ValueError):
             return create_error_response("question_ids must contain only integers")
+
+        from db_actions import get_correct_answers
 
         correct_answers_response = get_correct_answers(question_ids)
         if correct_answers_response["status"] == "fail":
