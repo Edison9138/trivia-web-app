@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from db_actions import get_trivia_questions, get_wrong_answers
+from db_actions import get_correct_answers, get_trivia_questions, get_wrong_answers
 import math
 import logging
 import random
@@ -85,8 +85,7 @@ def get_questions():
         "status": "success",
         "data": {
             "questions": [...],
-            "correct_answers": [...],
-            "wrong_answers": [...],
+            "answers": [...],
             "question_ids": [...]
         }
     }
@@ -134,7 +133,6 @@ def get_questions():
         questions_data = response["data"]
         formatted_data = {
             "questions": [],
-            "correct_answers": [],
             "answers": [],
             "question_ids": []
         }
@@ -159,7 +157,6 @@ def get_questions():
 
             # Add question data to formatted response
             formatted_data["questions"].append(question["question"])
-            formatted_data["correct_answers"].append(question["correct_answer"])
             all_answers = [question["correct_answer"]] + wrong_answers
             random.shuffle(all_answers)
             formatted_data["answers"].append(all_answers)
@@ -182,18 +179,39 @@ def calculate_score():
             return create_error_response("No data provided in request body")
 
         user_answers = data.get('user_answers')
-        correct_answers = data.get('correct_answers')
+        question_ids = data.get('question_ids')
 
         # Validate inputs
-        if not all([user_answers, correct_answers]):
+        if user_answers is None or question_ids is None:
             return create_error_response(
-                "Missing user_answers or correct_answers in request body"
+                "Missing user_answers or question_ids in request body"
             )
 
-        if len(user_answers) != len(correct_answers):
+        if not isinstance(user_answers, list) or not isinstance(question_ids, list):
             return create_error_response(
-                "Number of user answers and correct answers do not match"
+                "user_answers and question_ids must be lists"
             )
+
+        if not user_answers or not question_ids:
+            return create_error_response(
+                "At least one answer is required"
+            )
+
+        if len(user_answers) != len(question_ids):
+            return create_error_response(
+                "Number of user answers and question ids do not match"
+            )
+
+        try:
+            question_ids = [int(question_id) for question_id in question_ids]
+        except (TypeError, ValueError):
+            return create_error_response("question_ids must contain only integers")
+
+        correct_answers_response = get_correct_answers(question_ids)
+        if correct_answers_response["status"] == "fail":
+            return create_error_response(correct_answers_response["data"])
+
+        correct_answers = correct_answers_response["data"]
 
         # Calculate score
         total_questions = len(correct_answers)

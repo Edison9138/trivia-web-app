@@ -17,7 +17,6 @@ function App() {
 
   const [questionsData, setQuestionsData] = useState({
     questions: [],
-    correct_answers: [],
     answers: [],
     question_ids: [],
   });

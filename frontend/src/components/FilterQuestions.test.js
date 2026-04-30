@@ -31,7 +31,6 @@ test("submits boolean for true false questions", async () => {
       status: "success",
       data: {
         questions: ["Question?"],
-        correct_answers: ["True"],
         answers: [["True", "False"]],
         question_ids: [1],
       },

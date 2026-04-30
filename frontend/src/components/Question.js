@@ -12,11 +12,11 @@ const Question = ({ questionsData }) => {
   // State to track the user's selected answers
   const [userAnswers, setUserAnswers] = useState({});
 
-  // Destructure the questions and answers from questionsData
-  const { questions, answers } = questionsData;
+  // Destructure the question payload from questionsData
+  const { questions, answers, question_ids } = questionsData;
 
-  // Ensure questions and answers are defined
-  if (!questions || !answers || questions.length === 0) {
+  // Ensure question data is defined
+  if (!questions || !answers || !question_ids || questions.length === 0) {
     return <p>Loading questions...</p>;
   }
 
@@ -24,8 +24,8 @@ const Question = ({ questionsData }) => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post("http://localhost:5001/calculate-score", {
-        user_answers: Object.values(userAnswers),
-        correct_answers: questionsData.correct_answers,
+        user_answers: question_ids.map((_, index) => userAnswers[index]),
+        question_ids: question_ids,
       });
 
       const data = response.data;

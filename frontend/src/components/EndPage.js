@@ -7,15 +7,18 @@ export default function EndPage(props) {
   const location = useLocation();
 
   // Retrieve the score from location state or localStorage
-  const [score, setScore] = useState(() => {
-    return location.state?.score || localStorage.getItem('userScore') || 0;
+  const [score] = useState(() => {
+    return location.state?.score ?? localStorage.getItem('userScore');
   });
 
   useEffect(() => {
-    if (score === 0) {
+    if (score === null || score === undefined || score === "") {
       // If no score is available, redirect to home page
       navigate("/");
+      return;
     }
+
+    localStorage.setItem("userScore", score);
   }, [score, navigate]);
 
   return (

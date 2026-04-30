@@ -190,6 +190,54 @@ def get_wrong_answers(question_id: int) -> Dict:
         logger.exception("Failed to retrieve wrong answers")
         return create_error_response(f"Database error: {str(e)}")
 
+def get_correct_answers(question_ids: List[int]) -> Dict:
+    """
+    Fetch correct answers for the submitted question ids in the same order.
+    """
+    if not question_ids:
+        logger.error("Missing question_ids parameter")
+        return create_error_response("Missing question_ids parameter")
+
+    unique_question_ids = list(dict.fromkeys(question_ids))
+
+    try:
+        with get_db_connection() as connection:
+            with connection.cursor() as cursor:
+                question_id_placeholders = ', '.join(['%s'] * len(unique_question_ids))
+                query = f'''
+                SELECT id, correct_answer
+                FROM trivia_questions
+                WHERE id IN ({question_id_placeholders})
+                '''
+
+                cursor.execute(query, tuple(unique_question_ids))
+                result = cursor.fetchall()
+
+                answers_by_id = {
+                    row["id"]: row["correct_answer"]
+                    for row in result
+                }
+                missing_question_ids = [
+                    question_id
+                    for question_id in unique_question_ids
+                    if question_id not in answers_by_id
+                ]
+
+                if missing_question_ids:
+                    logger.warning(f"Missing submitted question ids: {missing_question_ids}")
+                    return create_error_response(
+                        "Could not find all submitted question ids"
+                    )
+
+                return create_success_response([
+                    answers_by_id[question_id]
+                    for question_id in question_ids
+                ])
+
+    except Exception as e:
+        logger.exception("Failed to retrieve correct answers")
+        return create_error_response(f"Database error: {str(e)}")
+
 def health_check() -> Dict:
     """
     Check database connection health.
