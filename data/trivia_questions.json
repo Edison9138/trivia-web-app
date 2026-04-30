@@ -721,7 +721,7 @@
         "correct_answer": "Daveed Diggs",
         "incorrect_answers": [
             "Lin-Manuel Miranda",
-            "Javier Mu&ntilde;oz",
+            "Javier Mu\u00f1oz",
             "Wayne Brady"
         ]
     },
@@ -777,7 +777,7 @@
         "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Entertainment: Music",
-        "question": "In the song &ldquo;The Ultimate Showdown of Ultimate Destiny,&rdquo; who is the only one to survive the battle?",
+        "question": "In the song \u201cThe Ultimate Showdown of Ultimate Destiny,\u201d who is the only one to survive the battle?",
         "correct_answer": "Mr. Rogers",
         "incorrect_answers": [
             "Batman",
@@ -1104,7 +1104,7 @@
         "incorrect_answers": [
             "1%",
             "3%",
-            "&lt;1%"
+            "<1%"
         ]
     },
     {
@@ -1234,9 +1234,9 @@
         "difficulty": "Hard",
         "category": "Entertainment: Books",
         "question": "The novel 'Jane Eyre' was written by what author? ",
-        "correct_answer": "Charlotte Bront&euml;",
+        "correct_answer": "Charlotte Bront\u00eb",
         "incorrect_answers": [
-            "Emily Bront&euml;",
+            "Emily Bront\u00eb",
             "Jane Austen",
             "Louisa May Alcott"
         ]
@@ -2271,7 +2271,7 @@
         "type": "boolean",
         "difficulty": "Medium",
         "category": "Entertainment: Video Games",
-        "question": "Minecraft wasn&rsquo;t the original name to Minecraft.",
+        "question": "Minecraft wasn\u2019t the original name to Minecraft.",
         "correct_answer": "True",
         "incorrect_answers": [
             "False"
@@ -2346,7 +2346,7 @@
         "incorrect_answers": [
             "Pupcia",
             "Polszka",
-            "P&oacute;land"
+            "P\u00f3land"
         ]
     },
     {
@@ -2507,7 +2507,7 @@
         "type": "boolean",
         "difficulty": "Medium",
         "category": "Entertainment: Video Games",
-        "question": "The Ace Attorney trilogy was suppose to end with 'Phoenix Wright: Ace Attorney &minus; Trials and Tribulations' as its final game.",
+        "question": "The Ace Attorney trilogy was suppose to end with 'Phoenix Wright: Ace Attorney \u2212 Trials and Tribulations' as its final game.",
         "correct_answer": "True",
         "incorrect_answers": [
             "False"
@@ -3243,7 +3243,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Entertainment: Music",
-        "question": "Bj&ouml;rk's 'Unison' contains a sample of which Oval song?",
+        "question": "Bj\u00f6rk's 'Unison' contains a sample of which Oval song?",
         "correct_answer": "Aero Deck",
         "incorrect_answers": [
             "Textuell",
@@ -3434,9 +3434,9 @@
         "question": "Which major extinction event was caused by an asteroid collision and eliminated the majority of non-avian dinosaurs?",
         "correct_answer": "Cretaceous-Paleogene",
         "incorrect_answers": [
-            "Triassic&ndash;Jurassic",
-            "Permian&ndash;Triassic",
-            "Ordovician&ndash;Silurian"
+            "Triassic\u2013Jurassic",
+            "Permian\u2013Triassic",
+            "Ordovician\u2013Silurian"
         ]
     },
     {
@@ -4461,7 +4461,7 @@
         "correct_answer": "The Artful Dodger",
         "incorrect_answers": [
             "Fagin",
-            "Bull&rsquo;s-eye",
+            "Bull\u2019s-eye",
             "Mr. Fang"
         ]
     },
@@ -4497,7 +4497,7 @@
         "correct_answer": "Chapeau",
         "incorrect_answers": [
             "Bonnet",
-            " &Eacute;charpe",
+            " \u00c9charpe",
             " Casque"
         ]
     },
@@ -4778,11 +4778,11 @@
         "difficulty": "Medium",
         "category": "General Knowledge",
         "question": "What is the German word for 'spoon'?",
-        "correct_answer": "L&ouml;ffel",
+        "correct_answer": "L\u00f6ffel",
         "incorrect_answers": [
             "Gabel",
             "Messer",
-            "Essst&auml;bchen"
+            "Essst\u00e4bchen"
         ]
     },
     {
@@ -4804,7 +4804,7 @@
         "question": "Who was the main antagonist of Max Payne 3 (2012)?",
         "correct_answer": "Victor Branco",
         "incorrect_answers": [
-            "&Aacute;lvaro Neves",
+            "\u00c1lvaro Neves",
             "Armando Becker",
             "Milo Rego"
         ]
@@ -5417,18 +5417,6 @@
     },
     {
         "type": "Multiple Choice",
-        "difficulty": "Easy",
-        "category": "Art",
-        "question": "Who painted the Mona Lisa?",
-        "correct_answer": "Leonardo da Vinci ",
-        "incorrect_answers": [
-            "Pablo Picasso",
-            " Vincent van Gogh",
-            "Michelangelo"
-        ]
-    },
-    {
-        "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Entertainment: Film",
         "question": "How much money did the 2019 Marvel movie 'Avengers: Endgame' grossed for it's record-breaking worldwide opening weekend?",
@@ -5629,7 +5617,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Entertainment: Music",
-        "question": "What is the name of the song by Beyonc&eacute; and Alejandro Fern&aacute;ndez released in 2007?",
+        "question": "What is the name of the song by Beyonc\u00e9 and Alejandro Fern\u00e1ndez released in 2007?",
         "correct_answer": "Amor Gitano",
         "incorrect_answers": [
             "La ultima vez",
@@ -5645,7 +5633,7 @@
         "correct_answer": "Cheetah",
         "incorrect_answers": [
             "Lion",
-            "Thomson&rsquo;s Gazelle",
+            "Thomson\u2019s Gazelle",
             "Pronghorn Antelope"
         ]
     },
@@ -6157,7 +6145,7 @@
         "type": "boolean",
         "difficulty": "Medium",
         "category": "Celebrities",
-        "question": "Michael Jackson had a pet python named &lsquo;Crusher&rsquo;.",
+        "question": "Michael Jackson had a pet python named \u2018Crusher\u2019.",
         "correct_answer": "True",
         "incorrect_answers": [
             "False"
@@ -7539,7 +7527,7 @@
         "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Sports",
-        "question": "Which soccer team won the Copa Am&eacute;rica 2015 Championship ?",
+        "question": "Which soccer team won the Copa Am\u00e9rica 2015 Championship ?",
         "correct_answer": "Chile",
         "incorrect_answers": [
             "Argentina",
@@ -7885,7 +7873,7 @@
         "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "General Knowledge",
-        "question": "This field is sometimes known as &ldquo;The Dismal Science.&rdquo;",
+        "question": "This field is sometimes known as \u201cThe Dismal Science.\u201d",
         "correct_answer": "Economics",
         "incorrect_answers": [
             "Philosophy",
@@ -8002,7 +7990,7 @@
         "difficulty": "Easy",
         "category": "Entertainment: Video Games",
         "question": "What is the name of 'Team Fortress 2' update, in which it became Free-to-play?",
-        "correct_answer": "&Uuml;ber Update",
+        "correct_answer": "\u00dcber Update",
         "incorrect_answers": [
             "Pyromania Update",
             "Mann-Conomy Update",
@@ -8437,7 +8425,7 @@
         "type": "Multiple Choice",
         "difficulty": "Easy",
         "category": "Entertainment: Video Games",
-        "question": "The &ldquo;fairy&rdquo; type made it&rsquo;s debut in which generation of the Pokemon core series games?",
+        "question": "The \u201cfairy\u201d type made it\u2019s debut in which generation of the Pokemon core series games?",
         "correct_answer": "6th",
         "incorrect_answers": [
             "2nd",
@@ -8488,7 +8476,7 @@
         "question": "The ontological argument for the proof of God's existence is first attributed to whom?",
         "correct_answer": "Anselm of Canterbury",
         "incorrect_answers": [
-            "Ren&eacute; Descartes",
+            "Ren\u00e9 Descartes",
             "Immanuel Kant",
             "Aristotle"
         ]
@@ -8569,7 +8557,7 @@
         "type": "Multiple Choice",
         "difficulty": "Easy",
         "category": "Entertainment: Video Games",
-        "question": "Which of the following is NOT one of the main characters in Grand Theft Auto V&rsquo;s story mode?",
+        "question": "Which of the following is NOT one of the main characters in Grand Theft Auto V\u2019s story mode?",
         "correct_answer": "Tommy Vercetti",
         "incorrect_answers": [
             "Michael de Santa",
@@ -9167,7 +9155,7 @@
         "correct_answer": "Aragon",
         "incorrect_answers": [
             "Galicia",
-            "Le&oacute;n",
+            "Le\u00f3n",
             "Navarre"
         ]
     },
@@ -9352,9 +9340,9 @@
         "difficulty": "Easy",
         "category": "General Knowledge",
         "question": "The drug cartel run by Pablo Escobar originated in which South American city?",
-        "correct_answer": "Medell&iacute;n",
+        "correct_answer": "Medell\u00edn",
         "incorrect_answers": [
-            "Bogot&aacute;",
+            "Bogot\u00e1",
             "Quito",
             "Cali"
         ]
@@ -9766,7 +9754,7 @@
         "incorrect_answers": [
             "+",
             "X",
-            "&divide;"
+            "\u00f7"
         ]
     },
     {
@@ -10052,9 +10040,9 @@
         "difficulty": "Medium",
         "category": "Sports",
         "question": "Who was the top scorer of the 2014 FIFA World Cup?",
-        "correct_answer": "James Rodr&iacute;guez",
+        "correct_answer": "James Rodr\u00edguez",
         "incorrect_answers": [
-            "Thomas M&uuml;ller",
+            "Thomas M\u00fcller",
             "Lionel Messi",
             "Neymar"
         ]
@@ -10074,7 +10062,7 @@
         "difficulty": "Medium",
         "category": "Science & Nature",
         "question": "Who made the discovery of X-rays?",
-        "correct_answer": "Wilhelm Conrad R&ouml;ntgen",
+        "correct_answer": "Wilhelm Conrad R\u00f6ntgen",
         "incorrect_answers": [
             "Thomas Alva Edison",
             "James Watt",
@@ -10616,7 +10604,7 @@
         "incorrect_answers": [
             "Mike Dirnt",
             "Sean Hughes",
-            "Tr&eacute; Cool"
+            "Tr\u00e9 Cool"
         ]
     },
     {
@@ -10891,7 +10879,7 @@
         "type": "boolean",
         "difficulty": "Medium",
         "category": "Entertainment: Music",
-        "question": "The country song  &ldquo;A Boy Named Sue&rdquo; was written by Shel Silverstein.",
+        "question": "The country song  \u201cA Boy Named Sue\u201d was written by Shel Silverstein.",
         "correct_answer": "True",
         "incorrect_answers": [
             "False"
@@ -11028,7 +11016,7 @@
         "difficulty": "Medium",
         "category": "Entertainment: Comics",
         "question": "Who authored The Adventures of Tintin?",
-        "correct_answer": "Herg&eacute;",
+        "correct_answer": "Herg\u00e9",
         "incorrect_answers": [
             "E.P. Jacobs",
             "Rin Tin Tin",
@@ -11237,7 +11225,7 @@
         "type": "Multiple Choice",
         "difficulty": "Easy",
         "category": "Entertainment: Music",
-        "question": "Which famous rapper is featured in Jack &Uuml; (Skrillex and Diplo)'s 2015 single called 'Febreze'?",
+        "question": "Which famous rapper is featured in Jack \u00dc (Skrillex and Diplo)'s 2015 single called 'Febreze'?",
         "correct_answer": "2 Chainz",
         "incorrect_answers": [
             "Kendrick Lamar",
@@ -12145,18 +12133,6 @@
     },
     {
         "type": "Multiple Choice",
-        "difficulty": "Easy",
-        "category": "General Knowledge",
-        "question": "The &ldquo;fairy&rdquo; type made it&rsquo;s debut in which generation of the Pokemon core series games?",
-        "correct_answer": "6th",
-        "incorrect_answers": [
-            "2nd",
-            "7th",
-            "4th"
-        ]
-    },
-    {
-        "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Entertainment: Comics",
         "question": "In Bionicle, who was formerly a Av-Matoran and is now the Toa of Light?",
@@ -12391,7 +12367,7 @@
         "type": "Multiple Choice",
         "difficulty": "Easy",
         "category": "Science & Nature",
-        "question": "What animal takes part in Schr&ouml;dinger's most famous thought experiment?",
+        "question": "What animal takes part in Schr\u00f6dinger's most famous thought experiment?",
         "correct_answer": "Cat",
         "incorrect_answers": [
             "Dog",
@@ -12652,7 +12628,7 @@
         "question": "Which city is the capital of Switzerland?",
         "correct_answer": "Bern",
         "incorrect_answers": [
-            "Z&uuml;rich",
+            "Z\u00fcrich",
             "Frankfurt",
             "Wien"
         ]
@@ -13138,7 +13114,7 @@
         "incorrect_answers": [
             "Ip Man 2",
             "The Bourne Legacy",
-            "L&eacute;on: The Professional"
+            "L\u00e9on: The Professional"
         ]
     },
     {
@@ -13510,7 +13486,7 @@
         "incorrect_answers": [
             "Wolfgang Amadeus Mozart",
             "Brian Eno",
-            "Sigur R&oacute;s"
+            "Sigur R\u00f3s"
         ]
     },
     {
@@ -14209,7 +14185,7 @@
         "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Entertainment: Music",
-        "question": "'74&ndash;'75 is a 1993 single from the album Ring by what American band?",
+        "question": "'74\u2013'75 is a 1993 single from the album Ring by what American band?",
         "correct_answer": "The Connells",
         "incorrect_answers": [
             "R.E.M.",
@@ -14619,7 +14595,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Art",
-        "question": "What year did Albrecht D&uuml;rer create the painting 'The Young Hare'?",
+        "question": "What year did Albrecht D\u00fcrer create the painting 'The Young Hare'?",
         "correct_answer": "1502",
         "incorrect_answers": [
             "1702",
@@ -16051,8 +16027,8 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Art",
-        "question": "Albrecht D&uuml;rer's birthplace and place of death were in...",
-        "correct_answer": "N&uuml;rnberg",
+        "question": "Albrecht D\u00fcrer's birthplace and place of death were in...",
+        "correct_answer": "N\u00fcrnberg",
         "incorrect_answers": [
             "Augsburg",
             "Bamberg",
@@ -16339,7 +16315,7 @@
         "type": "Multiple Choice",
         "difficulty": "Easy",
         "category": "General Knowledge",
-        "question": "The New York Times slogan is, &ldquo;All the News That&rsquo;s Fit to&hellip;&rdquo;",
+        "question": "The New York Times slogan is, \u201cAll the News That\u2019s Fit to\u2026\u201d",
         "correct_answer": "Print",
         "incorrect_answers": [
             "Digest",
@@ -17531,7 +17507,7 @@
         "type": "boolean",
         "difficulty": "Hard",
         "category": "Science: Mathematics",
-        "question": "L'H&ocirc;pital was the mathematician who created the homonymous rule that uses derivatives to evaluate limits with indeterminations.",
+        "question": "L'H\u00f4pital was the mathematician who created the homonymous rule that uses derivatives to evaluate limits with indeterminations.",
         "correct_answer": "False",
         "incorrect_answers": [
             "True"
@@ -17635,12 +17611,12 @@
         "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Entertainment: Video Games",
-        "question": "In Overwatch, what is L&uacute;cio's full name?",
-        "correct_answer": "L&uacute;cio Correia Dos Santos",
+        "question": "In Overwatch, what is L\u00facio's full name?",
+        "correct_answer": "L\u00facio Correia Dos Santos",
         "incorrect_answers": [
-            "L&uacute;cio Luiz L&oacute;s Guilherme",
-            "L&uacute;cio Jo&atilde;o Lucas",
-            "L&uacute;cio Chupar Prima"
+            "L\u00facio Luiz L\u00f3s Guilherme",
+            "L\u00facio Jo\u00e3o Lucas",
+            "L\u00facio Chupar Prima"
         ]
     },
     {
@@ -17849,7 +17825,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Geography",
-        "question": "Llanfair&shy;pwllgwyngyll&shy;gogery&shy;chwyrn&shy;drobwll&shy;llan&shy;tysilio&shy;gogo&shy;goch is located on which Welsh island?",
+        "question": "Llanfair\u00adpwllgwyngyll\u00adgogery\u00adchwyrn\u00addrobwll\u00adllan\u00adtysilio\u00adgogo\u00adgoch is located on which Welsh island?",
         "correct_answer": "Anglesey",
         "incorrect_answers": [
             "Barry",
@@ -18096,8 +18072,8 @@
         "question": "What name was historically used for the Turkish city currently known as Istanbul?",
         "correct_answer": "Constantinople",
         "incorrect_answers": [
-            "H&uuml;davendigar",
-            "S&ouml;\u011f&uuml;t",
+            "H\u00fcdavendigar",
+            "S\u00f6\u011f\u00fct",
             "Adrianople"
         ]
     },
@@ -18122,7 +18098,7 @@
         "incorrect_answers": [
             "Brazil",
             "Brasilia",
-            "Bras&iacute;l"
+            "Bras\u00edl"
         ]
     },
     {
@@ -18546,7 +18522,7 @@
         "question": "Which painting was not made by Vincent Van Gogh?",
         "correct_answer": "The Ninth Wave",
         "incorrect_answers": [
-            "Caf&eacute; Terrace at Night",
+            "Caf\u00e9 Terrace at Night",
             "Bedroom In Arles",
             "Starry Night"
         ]
@@ -19167,7 +19143,7 @@
         "correct_answer": "Barbados",
         "incorrect_answers": [
             "Cuba",
-            "Jamaica&lrm;",
+            "Jamaica\u200e",
             "Dominica"
         ]
     },
@@ -19248,7 +19224,7 @@
         "question": "Which artist's style was to use small different colored dots to create a picture?",
         "correct_answer": "Georges Seurat",
         "incorrect_answers": [
-            "Paul C&eacute;zanne",
+            "Paul C\u00e9zanne",
             "Vincent Van Gogh",
             "Henri Rousseau"
         ]
@@ -19262,7 +19238,7 @@
         "incorrect_answers": [
             "MC.princess",
             "Kidnotsquid123",
-            "I&lt;30ffTh3H00k"
+            "I<30ffTh3H00k"
         ]
     },
     {
@@ -19426,7 +19402,7 @@
         "incorrect_answers": [
             "Nagurskoye, Russia",
             "McMurdo Station, Antarctica ",
-            "Honningsv&aring;g, Norway"
+            "Honningsv\u00e5g, Norway"
         ]
     },
     {
@@ -19983,7 +19959,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "History",
-        "question": "The son of which pope supposedly held a lecherous f&ecirc;te involving 50 courtesans in the papal palace?",
+        "question": "The son of which pope supposedly held a lecherous f\u00eate involving 50 courtesans in the papal palace?",
         "correct_answer": "Alexander VI",
         "incorrect_answers": [
             "Innocent V",
@@ -20266,7 +20242,7 @@
         "difficulty": "Hard",
         "category": "Celebrities",
         "question": "Who was Donald Trump's first wife?",
-        "correct_answer": "Ivana Zeln&iacute;\u010dkov&aacute;",
+        "correct_answer": "Ivana Zeln\u00ed\u010dkov\u00e1",
         "incorrect_answers": [
             "Melania Knauss",
             "Marla Maples",
@@ -21183,7 +21159,7 @@
         "type": "Multiple Choice",
         "difficulty": "Easy",
         "category": "Art",
-        "question": "Which Van Gogh painting depicts the view from his asylum in Saint-R&eacute;my-de-Provence in southern France?",
+        "question": "Which Van Gogh painting depicts the view from his asylum in Saint-R\u00e9my-de-Provence in southern France?",
         "correct_answer": "The Starry Night",
         "incorrect_answers": [
             "Wheatfields with Crows",
@@ -21321,7 +21297,7 @@
         "type": "Multiple Choice",
         "difficulty": "Easy",
         "category": "Entertainment: Video Games",
-        "question": "What is Pikachu's National Pok&eacute;Dex Number?",
+        "question": "What is Pikachu's National Pok\u00e9Dex Number?",
         "correct_answer": "#025",
         "incorrect_answers": [
             "#001",
@@ -22329,7 +22305,7 @@
         "type": "Multiple Choice",
         "difficulty": "Easy",
         "category": "General Knowledge",
-        "question": "What is the name of NASA&rsquo;s most famous space telescope?",
+        "question": "What is the name of NASA\u2019s most famous space telescope?",
         "correct_answer": "Hubble Space Telescope",
         "incorrect_answers": [
             "Big Eye",
@@ -22365,7 +22341,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Politics",
-        "question": "What is the name of Niccol&ograve; Machiavelli's work that argued effective leaders needed to crush their opponents at all costs?",
+        "question": "What is the name of Niccol\u00f2 Machiavelli's work that argued effective leaders needed to crush their opponents at all costs?",
         "correct_answer": "The Prince",
         "incorrect_answers": [
             "The Rape of Lucrece",
@@ -22965,7 +22941,7 @@
         "correct_answer": "In Rainbows",
         "incorrect_answers": [
             "The Help Album",
-            "Skrillex and Diplo Present Jack &Uuml;",
+            "Skrillex and Diplo Present Jack \u00dc",
             "Blackstar"
         ]
     },
@@ -23567,7 +23543,7 @@
         "correct_answer": "Suomi",
         "incorrect_answers": [
             "Eesti",
-            "Magyarorsz&aacute;g",
+            "Magyarorsz\u00e1g",
             "Sverige"
         ]
     },
@@ -23788,7 +23764,7 @@
         "question": "Which of these artists did NOT remix the song 'Faded' by Alan Walker?",
         "correct_answer": "Skrillex",
         "incorrect_answers": [
-            "Ti&euml;sto",
+            "Ti\u00ebsto",
             "Slushii",
             "Dash Berlin"
         ]
@@ -24125,7 +24101,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Entertainment: Video Games",
-        "question": "What do the video games No Man&rsquo;s Sky and Mighty No. 9 have in common?",
+        "question": "What do the video games No Man\u2019s Sky and Mighty No. 9 have in common?",
         "correct_answer": "Both were announced in 2013.",
         "incorrect_answers": [
             "Both were crowdfunded.",
@@ -24137,7 +24113,7 @@
         "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Entertainment: Film",
-        "question": "In the movie &ldquo;The Iron Giant,&rdquo; this character is the protagonist.",
+        "question": "In the movie \u201cThe Iron Giant,\u201d this character is the protagonist.",
         "correct_answer": "Hogarth Hughes",
         "incorrect_answers": [
             "Kent Mansley",
@@ -24377,7 +24353,7 @@
         "type": "Multiple Choice",
         "difficulty": "Easy",
         "category": "Science & Nature",
-        "question": "Which gas forms about 78% of the Earth&rsquo;s atmosphere?",
+        "question": "Which gas forms about 78% of the Earth\u2019s atmosphere?",
         "correct_answer": "Nitrogen",
         "incorrect_answers": [
             "Oxygen",
@@ -24703,7 +24679,7 @@
         "correct_answer": "Napoleone di Buonaparte",
         "incorrect_answers": [
             "Naapolion van Bonijpaart",
-            "Napole&atilde;o do Boaparte",
+            "Napole\u00e3o do Boaparte",
             "Napoleona de Buenoparte"
         ]
     },
@@ -25031,7 +25007,7 @@
         "type": "Multiple Choice",
         "difficulty": "Easy",
         "category": "General Knowledge",
-        "question": "Where is the train station 'Llanfair&shy;pwllgwyngyll&shy;gogery&shy;chwyrn&shy;drobwll&shy;llan&shy;tysilio&shy;gogo&shy;goch'?",
+        "question": "Where is the train station 'Llanfair\u00adpwllgwyngyll\u00adgogery\u00adchwyrn\u00addrobwll\u00adllan\u00adtysilio\u00adgogo\u00adgoch'?",
         "correct_answer": "Wales",
         "incorrect_answers": [
             "Moldova",
@@ -25382,7 +25358,7 @@
         "question": "The character Plum from 'No Game No Life' is of what race?",
         "correct_answer": "Dhampir",
         "incorrect_answers": [
-            "Fl&uuml;gel",
+            "Fl\u00fcgel",
             "Imanity",
             "Seiren"
         ]
@@ -25546,7 +25522,7 @@
         "question": "In 2008, British celebrity chef Gordon Ramsay believes he almost died after suffering what accident in Iceland while filming?",
         "correct_answer": "Slipping off a cliff, and nearly drowning in icy water",
         "incorrect_answers": [
-            "Crash landing when arriving at Keflav&iacute;k airport",
+            "Crash landing when arriving at Keflav\u00edk airport",
             "A minor car accident in a snowstorm",
             "Being served under-cooked chicken at his hotel"
         ]
@@ -26489,7 +26465,7 @@
         "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Geography",
-        "question": "The formerly East-Prussian city of K&ouml;nigsberg is known as which Russian City today?",
+        "question": "The formerly East-Prussian city of K\u00f6nigsberg is known as which Russian City today?",
         "correct_answer": "Kaliningrad",
         "incorrect_answers": [
             "Kazan",
@@ -26913,7 +26889,7 @@
         "type": "boolean",
         "difficulty": "Hard",
         "category": "General Knowledge",
-        "question": "In Scandinavian languages, the letter &Aring; means river.",
+        "question": "In Scandinavian languages, the letter \u00c5 means river.",
         "correct_answer": "True",
         "incorrect_answers": [
             "False"
@@ -27488,11 +27464,11 @@
         "difficulty": "Easy",
         "category": "Geography",
         "question": "What is the 15th letter of the Greek alphabet?",
-        "correct_answer": "Omicron (&Omicron;)",
+        "correct_answer": "Omicron (\u039f)",
         "incorrect_answers": [
-            "Sigma (&Sigma;)",
-            "Pi (&Pi;)",
-            "Nu (&Nu;)"
+            "Sigma (\u03a3)",
+            "Pi (\u03a0)",
+            "Nu (\u039d)"
         ]
     },
     {
@@ -28084,7 +28060,7 @@
         "difficulty": "Easy",
         "category": "Science: Mathematics",
         "question": "What is the symbol for Displacement?",
-        "correct_answer": "&Delta;r",
+        "correct_answer": "\u0394r",
         "incorrect_answers": [
             "dr",
             "Dp",
@@ -29497,7 +29473,7 @@
         "type": "boolean",
         "difficulty": "Easy",
         "category": "Science: Mathematics",
-        "question": "An equilateral triangle always has every angle measuring 60&deg;.",
+        "question": "An equilateral triangle always has every angle measuring 60\u00b0.",
         "correct_answer": "True",
         "incorrect_answers": [
             "False"
@@ -29795,7 +29771,7 @@
         "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Art",
-        "question": "Which time signature is commonly known as &ldquo;Cut Time?&rdquo;",
+        "question": "Which time signature is commonly known as \u201cCut Time?\u201d",
         "correct_answer": "2/2",
         "incorrect_answers": [
             "4/4",
@@ -29859,7 +29835,7 @@
         "correct_answer": "'Frankly, my dear, I don't give a damn.'",
         "incorrect_answers": [
             "'Here's lookin' at you, kid.'",
-            "&ldquo;Of all the gin joints, in all the towns, in all the world, she walks into mine&hellip;&rdquo;",
+            "\u201cOf all the gin joints, in all the towns, in all the world, she walks into mine\u2026\u201d",
             "'Round up the usual suspects.'"
         ]
     },
@@ -29970,7 +29946,7 @@
         "difficulty": "Hard",
         "category": "Entertainment: Music",
         "question": "What is the name of the 2016 mixtape released by Venezuelan electronic producer Arca?",
-        "correct_answer": "Entra&ntilde;as",
+        "correct_answer": "Entra\u00f1as",
         "incorrect_answers": [
             "&&&&&&",
             "Sheep",
@@ -30196,10 +30172,10 @@
         "difficulty": "Hard",
         "category": "Science & Nature",
         "question": "The core of the Sun can reach which temperature?",
-        "correct_answer": "27&deg; Million F (15&deg; Million C)",
+        "correct_answer": "27\u00b0 Million F (15\u00b0 Million C)",
         "incorrect_answers": [
-            "938,000&deg; F (521093.3&deg; C)",
-            "8&deg; Billion F (&deg;4.4 Billion C)",
+            "938,000\u00b0 F (521093.3\u00b0 C)",
+            "8\u00b0 Billion F (\u00b04.4 Billion C)",
             "Absolute Zero (Both F and C)"
         ]
     },
@@ -30764,7 +30740,7 @@
         "difficulty": "Medium",
         "category": "History",
         "question": "Which of the following snipers has the highest amount of confirmed kills?",
-        "correct_answer": "Simo H&auml;yh&auml;",
+        "correct_answer": "Simo H\u00e4yh\u00e4",
         "incorrect_answers": [
             "Chris Kyle",
             "Vasily Zaytsev",
@@ -31036,7 +31012,7 @@
         "question": "What is the name of one of the Neo-Aramaic languages spoken by the Jewish population from Northwestern Iraq?",
         "correct_answer": "Lishana Deni",
         "incorrect_answers": [
-            "Hulaul&aacute;",
+            "Hulaul\u00e1",
             "Lishan Didan",
             "Chaldean Neo-Aramaic"
         ]
@@ -31442,7 +31418,7 @@
         "difficulty": "Medium",
         "category": "Geography",
         "question": "What was the most populous city in the Americas in 2015?",
-        "correct_answer": "S&atilde;o Paulo",
+        "correct_answer": "S\u00e3o Paulo",
         "incorrect_answers": [
             "New York",
             "Mexico City",
@@ -31649,7 +31625,7 @@
         "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Art",
-        "question": "Which artist&rsquo;s studio was known as 'The Factory'?",
+        "question": "Which artist\u2019s studio was known as 'The Factory'?",
         "correct_answer": "Andy Warhol",
         "incorrect_answers": [
             "Roy Lichtenstein",
@@ -31720,7 +31696,7 @@
         "difficulty": "Medium",
         "category": "Entertainment: Books",
         "question": "The book 'The Little Prince' was written by...",
-        "correct_answer": "Antoine de Saint-Exup&eacute;ry",
+        "correct_answer": "Antoine de Saint-Exup\u00e9ry",
         "incorrect_answers": [
             "Miguel de Cervantes Saavedra",
             "Jane Austen",
@@ -32604,7 +32580,7 @@
         "incorrect_answers": [
             "Transformers",
             "Care Bears",
-            "Rubik&rsquo;s Cube"
+            "Rubik\u2019s Cube"
         ]
     },
     {
@@ -33053,7 +33029,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Science: Mathematics",
-        "question": "The French mathematician &Eacute;variste Galois is primarily known for his work in which?",
+        "question": "The French mathematician \u00c9variste Galois is primarily known for his work in which?",
         "correct_answer": "Galois Theory",
         "incorrect_answers": [
             "Galois' Continued Fractions",
@@ -33321,7 +33297,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Entertainment: Music",
-        "question": "How many members are there in the idol group '&micro;'s'?",
+        "question": "How many members are there in the idol group '\u00b5's'?",
         "correct_answer": "9",
         "incorrect_answers": [
             "48",
@@ -34321,8 +34297,8 @@
         "correct_answer": "Carmen",
         "incorrect_answers": [
             "Don Rodrigue",
-            "Gris&eacute;lidis",
-            "Les p&ecirc;cheurs de perles"
+            "Gris\u00e9lidis",
+            "Les p\u00eacheurs de perles"
         ]
     },
     {
@@ -34528,11 +34504,11 @@
         "difficulty": "Medium",
         "category": "Entertainment: Video Games",
         "question": "Psych-Horror 'Eternal Darkness: Sanity's Requiem', developed by Silicon Knights in 2002, was published by who and on what platform?",
-        "correct_answer": "Nintendo&reg; Co. Ltd. | GameCube&trade;",
+        "correct_answer": "Nintendo\u00ae Co. Ltd. | GameCube\u2122",
         "incorrect_answers": [
-            "Sony&reg; Computer Entertainment&trade; Inc. | PlayStation&reg; 2",
-            "Microsoft&reg; Game Studios&trade; | XBox&trade;",
-            "Sega&reg; Enterprises Co. Ltd. | Dreamcast&trade;"
+            "Sony\u00ae Computer Entertainment\u2122 Inc. | PlayStation\u00ae 2",
+            "Microsoft\u00ae Game Studios\u2122 | XBox\u2122",
+            "Sega\u00ae Enterprises Co. Ltd. | Dreamcast\u2122"
         ]
     },
     {
@@ -34777,7 +34753,7 @@
         "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Science: Mathematics",
-        "question": "What is the area of a circle with a diameter of 20 inches if &pi;= 3.1415?",
+        "question": "What is the area of a circle with a diameter of 20 inches if \u03c0= 3.1415?",
         "correct_answer": "314.15 Inches",
         "incorrect_answers": [
             "380.1215 Inches",
@@ -35717,7 +35693,7 @@
         "correct_answer": "St. Peter's Basilica",
         "incorrect_answers": [
             "Catania Cathedral",
-            "St. Mark&rsquo;s Basilica",
+            "St. Mark\u2019s Basilica",
             "The Duomo of Florence"
         ]
     },
@@ -35799,7 +35775,7 @@
         "correct_answer": "Dunning-Kruger effect",
         "incorrect_answers": [
             "Meyers-Briggs effect",
-            "M&uuml;ller-Lyer effect",
+            "M\u00fcller-Lyer effect",
             "Freud-Hall effect"
         ]
     },
@@ -36755,8 +36731,8 @@
         "correct_answer": "Pavlov's dog experiments",
         "incorrect_answers": [
             "Skinner box experiment",
-            "Schr&ouml;dinger's cat experiment",
-            "Harlow&rsquo;s monkey experiments"
+            "Schr\u00f6dinger's cat experiment",
+            "Harlow\u2019s monkey experiments"
         ]
     },
     {
@@ -36984,7 +36960,7 @@
         "difficulty": "Medium",
         "category": "Entertainment: Video Games",
         "question": "In Call Of Duty: Black Ops II, who is the main antagonist?",
-        "correct_answer": "Raul Men&eacute;ndez ",
+        "correct_answer": "Raul Men\u00e9ndez ",
         "incorrect_answers": [
             "Vladimir Makarov ",
             "Frank Woods",
@@ -37149,7 +37125,7 @@
         "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Entertainment: Video Games",
-        "question": "In the game 'Brawlhalla', what species is the character B&ouml;dvar is?",
+        "question": "In the game 'Brawlhalla', what species is the character B\u00f6dvar is?",
         "correct_answer": "Half Human / Half Bear",
         "incorrect_answers": [
             "A Human",
@@ -37162,7 +37138,7 @@
         "difficulty": "Easy",
         "category": "Entertainment: Film",
         "question": "Who directed the 2015 movie 'The Revenant'?",
-        "correct_answer": "Alejandro G. I&ntilde;&aacute;rritu",
+        "correct_answer": "Alejandro G. I\u00f1\u00e1rritu",
         "incorrect_answers": [
             "Christopher Nolan",
             "David Fincher",
@@ -37689,7 +37665,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Entertainment: Musicals & Theatres",
-        "question": "In Les Mis&eacute;rables, who is Prison Code 24601?",
+        "question": "In Les Mis\u00e9rables, who is Prison Code 24601?",
         "correct_answer": "Jean Valjean",
         "incorrect_answers": [
             "Marius Pontmercy",
@@ -38768,11 +38744,11 @@
         "difficulty": "Hard",
         "category": "Celebrities",
         "question": "How tall is Tom Cruise?",
-        "correct_answer": "5&prime; 7&Prime;",
+        "correct_answer": "5\u2032 7\u2033",
         "incorrect_answers": [
-            "5&prime; 9&Prime;",
-            "5&prime; 4&Prime;",
-            "5&prime; 5&Prime;"
+            "5\u2032 9\u2033",
+            "5\u2032 4\u2033",
+            "5\u2032 5\u2033"
         ]
     },
     {
@@ -39027,7 +39003,7 @@
         "type": "Multiple Choice",
         "difficulty": "Easy",
         "category": "Entertainment: Music",
-        "question": "Which singer was featured in Jack &Uuml; (Skrillex & Diplo)'s 2015 song 'Where Are &Uuml; Now'?",
+        "question": "Which singer was featured in Jack \u00dc (Skrillex & Diplo)'s 2015 song 'Where Are \u00dc Now'?",
         "correct_answer": "Justin Bieber",
         "incorrect_answers": [
             "Selena Gomez",
@@ -39131,7 +39107,7 @@
         "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Sports",
-        "question": "How many French Open's did Bj&ouml;rn Borg win?",
+        "question": "How many French Open's did Bj\u00f6rn Borg win?",
         "correct_answer": "6",
         "incorrect_answers": [
             "4",
@@ -39332,11 +39308,11 @@
         "difficulty": "Medium",
         "category": "Science & Nature",
         "question": "At what temperature does water boil?",
-        "correct_answer": "212&deg;F",
+        "correct_answer": "212\u00b0F",
         "incorrect_answers": [
-            "200&deg;F",
-            "181&deg;F",
-            "178&deg;F"
+            "200\u00b0F",
+            "181\u00b0F",
+            "178\u00b0F"
         ]
     },
     {
@@ -39534,8 +39510,8 @@
         "question": "What is the capital of Chile?",
         "correct_answer": "Santiago",
         "incorrect_answers": [
-            "Valpara&iacute;so",
-            "Copiap&oacute;",
+            "Valpara\u00edso",
+            "Copiap\u00f3",
             "Antofagasta"
         ]
     },
@@ -40405,7 +40381,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Science & Nature",
-        "question": "Which of the following liquids is least viscous? Assume temperature is 25&deg;C.",
+        "question": "Which of the following liquids is least viscous? Assume temperature is 25\u00b0C.",
         "correct_answer": "Acetone",
         "incorrect_answers": [
             "Water",
@@ -40613,7 +40589,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Geography",
-        "question": "Which of these cities has a 4&deg; East longitude. ",
+        "question": "Which of these cities has a 4\u00b0 East longitude. ",
         "correct_answer": "Amsterdam",
         "incorrect_answers": [
             "Rio de Janero",
@@ -40673,7 +40649,7 @@
         "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Science: Mathematics",
-        "question": "What type of function is x&sup2;+2x+1?",
+        "question": "What type of function is x\u00b2+2x+1?",
         "correct_answer": "Quadratic",
         "incorrect_answers": [
             "Rational",
@@ -40833,7 +40809,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "History",
-        "question": "Pianist Fr&eacute;d&eacute;ric Chopin was a composer of which musical era?",
+        "question": "Pianist Fr\u00e9d\u00e9ric Chopin was a composer of which musical era?",
         "correct_answer": "Romantic",
         "incorrect_answers": [
             "Classic",
@@ -40956,7 +40932,7 @@
         "incorrect_answers": [
             "Subject 16",
             "Subject 18",
-            "Alta&iuml;r Ibn-La'Ahad"
+            "Alta\u00efr Ibn-La'Ahad"
         ]
     },
     {
@@ -40992,7 +40968,7 @@
         "incorrect_answers": [
             "Sergio Leone, Ennio Morricone, and Tonino Delli Colli",
             "Yul Brynner, Steve McQueen, and Charles Bronson",
-            "Aldo Giuffr&egrave;, Mario Brega, and Luigi Pistilli"
+            "Aldo Giuffr\u00e8, Mario Brega, and Luigi Pistilli"
         ]
     },
     {
@@ -41014,7 +40990,7 @@
         "question": "Which of the following African countries was most successful in resisting colonization?",
         "correct_answer": "Ethiopia",
         "incorrect_answers": [
-            "C&ocirc;te d&rsquo;Ivoire",
+            "C\u00f4te d\u2019Ivoire",
             "Congo",
             "Namibia"
         ]
@@ -42240,8 +42216,8 @@
         "question": "Which director directed the movie 'Pan's Labyrinth'?",
         "correct_answer": "Guillermo Del Toro",
         "incorrect_answers": [
-            "Alfonso Cuar&oacute;n",
-            "Alejandro Gonz&aacute;lez I&ntilde;&aacute;rritu",
+            "Alfonso Cuar\u00f3n",
+            "Alejandro Gonz\u00e1lez I\u00f1\u00e1rritu",
             " Alejandro Jodorowsky"
         ]
     },
@@ -42725,7 +42701,7 @@
         "type": "boolean",
         "difficulty": "Easy",
         "category": "Science & Nature",
-        "question": "Water always boils at 100&deg;C, 212&deg;F, 373.15K, no matter where you are.",
+        "question": "Water always boils at 100\u00b0C, 212\u00b0F, 373.15K, no matter where you are.",
         "correct_answer": "False",
         "incorrect_answers": [
             "True"
@@ -42808,10 +42784,10 @@
         "difficulty": "Medium",
         "category": "General Knowledge",
         "question": "What is the Swedish word for 'window'?",
-        "correct_answer": "F&ouml;nster",
+        "correct_answer": "F\u00f6nster",
         "incorrect_answers": [
-            "H&aring;l",
-            "Sk&auml;rm",
+            "H\u00e5l",
+            "Sk\u00e4rm",
             "Ruta"
         ]
     },
@@ -42831,7 +42807,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Science: Mathematics",
-        "question": "What is the fourth digit of &pi;?",
+        "question": "What is the fourth digit of \u03c0?",
         "correct_answer": "1",
         "incorrect_answers": [
             "2",
@@ -42933,7 +42909,7 @@
         "type": "boolean",
         "difficulty": "Easy",
         "category": "Animals",
-        "question": "A slug&rsquo;s blood is green.",
+        "question": "A slug\u2019s blood is green.",
         "correct_answer": "True",
         "incorrect_answers": [
             "False"
@@ -43983,7 +43959,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Entertainment: Video Games",
-        "question": "What is the fastest speed possible in Trackmania&sup2;: Stadium?",
+        "question": "What is the fastest speed possible in Trackmania\u00b2: Stadium?",
         "correct_answer": "1000  km/h",
         "incorrect_answers": [
             "500 km/h",
@@ -44054,7 +44030,7 @@
         "difficulty": "Easy",
         "category": "General Knowledge",
         "question": "How would one say goodbye in Spanish?",
-        "correct_answer": "Adi&oacute;s",
+        "correct_answer": "Adi\u00f3s",
         "incorrect_answers": [
             " Hola",
             "Au Revoir",
@@ -44654,7 +44630,7 @@
         "question": "Electronic artists Boys Noize and Skrillex have collaborated and released tracks under what name?",
         "correct_answer": "Dog Blood",
         "incorrect_answers": [
-            "Jack &Uuml;",
+            "Jack \u00dc",
             "What So Not",
             "Noisia"
         ]
@@ -44993,7 +44969,7 @@
         "type": "Multiple Choice",
         "difficulty": "Medium",
         "category": "Sports",
-        "question": "Which soccer team won the Copa Am&eacute;rica Centenario 2016?",
+        "question": "Which soccer team won the Copa Am\u00e9rica Centenario 2016?",
         "correct_answer": "Chile",
         "incorrect_answers": [
             "Argentina",
@@ -45019,7 +44995,7 @@
         "correct_answer": "Philip J. Fry",
         "incorrect_answers": [
             "Fry J. Philip",
-            "Fry Rodr&iacute;guez",
+            "Fry Rodr\u00edguez",
             "Fry Philip"
         ]
     },
@@ -45064,7 +45040,7 @@
         "difficulty": "Medium",
         "category": "Entertainment: Video Games",
         "question": "Who composed the soundtrack for the game VVVVVV?",
-        "correct_answer": "Magnus P&aring;lsson",
+        "correct_answer": "Magnus P\u00e5lsson",
         "incorrect_answers": [
             "Terry Cavanagh",
             "Danny Baranowsky",
@@ -45075,7 +45051,7 @@
         "type": "boolean",
         "difficulty": "Hard",
         "category": "Art",
-        "question": "The Statue of Liberty's official name is &ldquo;Liberty Enlightening the World&rdquo;.",
+        "question": "The Statue of Liberty's official name is \u201cLiberty Enlightening the World\u201d.",
         "correct_answer": "True",
         "incorrect_answers": [
             "False"
@@ -45339,7 +45315,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "Sports",
-        "question": "What is &ldquo;The Sport of Kings&rdquo;?",
+        "question": "What is \u201cThe Sport of Kings\u201d?",
         "correct_answer": "Horse Racing",
         "incorrect_answers": [
             "Chess",
@@ -45664,11 +45640,11 @@
         "difficulty": "Hard",
         "category": "Entertainment: Video Games",
         "question": "In 'Need for Speed III: Hot Pursuit', what is the name of the fictional car?",
-        "correct_answer": "El Ni&ntilde;o",
+        "correct_answer": "El Ni\u00f1o",
         "incorrect_answers": [
-            "R&aacute;pido",
-            "&Aacute;gil",
-            "La Ni&ntilde;a"
+            "R\u00e1pido",
+            "\u00c1gil",
+            "La Ni\u00f1a"
         ]
     },
     {
@@ -45733,7 +45709,7 @@
         "type": "Multiple Choice",
         "difficulty": "Easy",
         "category": "Entertainment: Film",
-        "question": "What historical time period was the center of the Assassin&rsquo;s Creed movie (2016)?",
+        "question": "What historical time period was the center of the Assassin\u2019s Creed movie (2016)?",
         "correct_answer": "Spanish Inquisition",
         "incorrect_answers": [
             "Victorian England",
@@ -45996,11 +45972,11 @@
         "difficulty": "Medium",
         "category": "Science: Computers",
         "question": "In HTML, which non-standard tag used to be be used to make elements scroll across the viewport?",
-        "correct_answer": "&lt;marquee&gt;&lt;/marquee&gt;",
+        "correct_answer": "<marquee></marquee>",
         "incorrect_answers": [
-            "&lt;scroll&gt;&lt;/scroll&gt;",
-            "&lt;move&gt;&lt;/move&gt;",
-            "&lt;slide&gt;&lt;/slide&gt;"
+            "<scroll></scroll>",
+            "<move></move>",
+            "<slide></slide>"
         ]
     },
     {
@@ -46488,11 +46464,11 @@
         "difficulty": "Medium",
         "category": "History",
         "question": "What was Genghis Khan's real name?",
-        "correct_answer": "Tem&uuml;jin",
+        "correct_answer": "Tem\u00fcjin",
         "incorrect_answers": [
-            "M&ouml;ngke",
-            "&Ouml;gedei",
-            "Tem&uuml;r"
+            "M\u00f6ngke",
+            "\u00d6gedei",
+            "Tem\u00fcr"
         ]
     },
     {
@@ -46700,10 +46676,10 @@
         "difficulty": "Medium",
         "category": "Entertainment: Television",
         "question": "In the television show 'Lazy Town', who is the actor of Robbie Rotten?",
-        "correct_answer": "Stef&aacute;n Stef&aacute;nsson",
+        "correct_answer": "Stef\u00e1n Stef\u00e1nsson",
         "incorrect_answers": [
             "Adam Sandler",
-            "Magn&uacute;s Scheving",
+            "Magn\u00fas Scheving",
             "Stephen Carl"
         ]
     },
@@ -48233,7 +48209,7 @@
         "type": "Multiple Choice",
         "difficulty": "Hard",
         "category": "History",
-        "question": "The ancient city of Chich&eacute;n Itz&aacute; was built by which civilization?",
+        "question": "The ancient city of Chich\u00e9n Itz\u00e1 was built by which civilization?",
         "correct_answer": "Mayans",
         "incorrect_answers": [
             "Aztecs",
@@ -48280,9 +48256,9 @@
         "difficulty": "Hard",
         "category": "Art",
         "question": "What French sculptor designed the Statue of Liberty? ",
-        "correct_answer": "Fr&eacute;d&eacute;ric Auguste Bartholdi",
+        "correct_answer": "Fr\u00e9d\u00e9ric Auguste Bartholdi",
         "incorrect_answers": [
-            "Jean-L&eacute;on G&eacute;r&ocirc;me",
+            "Jean-L\u00e9on G\u00e9r\u00f4me",
             "Auguste Rodin",
             "Henri Matisse"
         ]
@@ -48412,7 +48388,7 @@
         "incorrect_answers": [
             "Asturias",
             "Navarre",
-            "Le&oacute;n"
+            "Le\u00f3n"
         ]
     },
     {
