@@ -12,6 +12,16 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 CORS(app)
 
+QUESTION_TYPE_ALIASES = {
+    "True/False": "boolean",
+    "true/false": "boolean",
+    "Boolean": "boolean",
+    "boolean": "boolean",
+    "Multiple Choice": "Multiple Choice",
+    "multiple choice": "Multiple Choice",
+    "multiple": "Multiple Choice",
+}
+
 def create_error_response(message, status_code=400):
     """Helper function to create consistent error responses"""
     return jsonify({
@@ -25,6 +35,29 @@ def create_success_response(data):
         "status": "success",
         "data": data
     })
+
+def normalize_question_types(question_types):
+    normalized_types = []
+
+    if isinstance(question_types, str):
+        question_types = [question_types]
+    elif not isinstance(question_types, list):
+        raise ValueError("question_types must be a list")
+
+    for question_type in question_types:
+        if not isinstance(question_type, str):
+            raise ValueError("question_types must contain only strings")
+
+        question_type_key = question_type.strip()
+        normalized_type = (
+            QUESTION_TYPE_ALIASES.get(question_type_key)
+            or QUESTION_TYPE_ALIASES.get(question_type_key.lower())
+        )
+        if normalized_type is None:
+            raise ValueError(f"Unsupported question type: {question_type}")
+        normalized_types.append(normalized_type)
+
+    return normalized_types
 
 @app.route('/')
 def home():
@@ -82,6 +115,11 @@ def get_questions():
             return create_error_response(
                 "Missing required parameters. Need question_types, category, and difficulties"
             )
+
+        try:
+            question_types = normalize_question_types(question_types)
+        except ValueError as e:
+            return create_error_response(str(e))
 
         # Log incoming request
         logger.info(f"Received request with: types={question_types}, "

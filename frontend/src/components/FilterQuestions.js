@@ -7,7 +7,10 @@ export default function FilterQuestions({ updateQuestions }) {
   const navigate = useNavigate();
 
   const difficulties = ["Easy", "Medium", "Hard"];
-  const questionTypes = ["True/False", "Multiple Choice"];
+  const questionTypes = [
+    { label: "True/False", value: "boolean" },
+    { label: "Multiple Choice", value: "Multiple Choice" },
+  ];
   const categories = [
     'Animals', 'Art', 'Celebrities', 'Entertainment: Board Games', 'Entertainment: Books', 
     'Entertainment: Cartoon & Animations', 'Entertainment: Comics', 'Entertainment: Film', 
@@ -36,6 +39,19 @@ export default function FilterQuestions({ updateQuestions }) {
     setSelectedCategory(event.target.value);
   };
 
+  const getQuestionFetchErrorMessage = (message) => {
+    if (!message) {
+      return "An error occurred while fetching questions.";
+    }
+
+    const availableCountMatch = message.match(/Found:\s*(\d+)/i);
+    if (message.includes("Not enough questions") && availableCountMatch) {
+      return `Not enough questions available. Max questions: ${availableCountMatch[1]}`;
+    }
+
+    return message;
+  };
+
   // Check if all required fields are selected to enable the Next button
   useEffect(() => {
     const isCategorySelected = selectedCategory !== "";
@@ -60,16 +76,10 @@ export default function FilterQuestions({ updateQuestions }) {
         count: questionCount,
       });
       
-      console.log(response);
       const data = response.data;
   
       if (data.status === "fail") {
-        // Show warning message if not enough questions are available
-        setWarningMessage(
-          `Not enough questions available. Max questions: ${
-            data.data.match(/\d+/)[0]
-          }`
-        );
+        setWarningMessage(getQuestionFetchErrorMessage(data.data));
       } else {
         // Clear warning message and navigate if enough questions are available
         setWarningMessage("");
@@ -78,8 +88,13 @@ export default function FilterQuestions({ updateQuestions }) {
         navigate("/question");
       }
     } catch (error) {
-      console.error("Error fetching questions:", error);
-      setWarningMessage("An error occurred while fetching questions.");
+      const errorData = error.response?.data;
+      if (errorData?.status === "fail") {
+        setWarningMessage(getQuestionFetchErrorMessage(errorData.data));
+      } else {
+        console.error("Error fetching questions:", error);
+        setWarningMessage("An error occurred while fetching questions.");
+      }
     }
   };
   
@@ -136,18 +151,18 @@ export default function FilterQuestions({ updateQuestions }) {
           <div className="type-options">
             <h4>Question Type</h4>
             {questionTypes.map((type) => (
-              <label key={type}>
+              <label key={type.value}>
                 <input
                   className="type-option"
                   type="checkbox"
                   name="type"
-                  value={type}
-                  checked={selectedTypes.has(type)}
+                  value={type.value}
+                  checked={selectedTypes.has(type.value)}
                   onChange={(event) =>
                     handleCheckboxChange(event, setSelectedTypes, selectedTypes)
                   }
                 />
-                {type}
+                {type.label}
               </label>
             ))}
           </div>
