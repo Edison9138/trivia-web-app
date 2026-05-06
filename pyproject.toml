@@ -8,7 +8,6 @@ dependencies = [
     "boto3",
     "requests",
     "pymysql",
-    "sshtunnel",
     "paramiko",
     "python-dotenv",
 ]

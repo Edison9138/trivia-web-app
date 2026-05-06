@@ -12,6 +12,11 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 CORS(app)
 
+import atexit
+from db_actions import start_tunnel, stop_tunnel
+start_tunnel()
+atexit.register(stop_tunnel)
+
 QUESTION_TYPE_ALIASES = {
     "True/False": "boolean",
     "true/false": "boolean",

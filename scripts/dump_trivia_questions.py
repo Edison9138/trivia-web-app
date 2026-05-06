@@ -111,37 +111,23 @@ def insert_questions(connection, all_questions):
 
 
 def main():
-    import paramiko # for creating ssh tunnel to connect to the ec2 bastion server
-    import pymysql
-    from sshtunnel import SSHTunnelForwarder
+    try:
+        from ..backend.db_actions import get_db_connection, start_tunnel, stop_tunnel
+    except ImportError:
+        import sys
+        sys.path.insert(0, str(PROJECT_ROOT / "backend"))
+        from db_actions import get_db_connection, start_tunnel, stop_tunnel
 
+    get_config()  # validate env vars before connecting
     all_questions = load_seed_questions()
-    config = get_config()
 
-    ssh_key = paramiko.RSAKey.from_private_key_file(config["ec2_ssh_key_path"])
-
-    with SSHTunnelForwarder(
-        (config["ec2_host"], config["ec2_port"]),
-        ssh_username=config["ec2_user"],
-        ssh_pkey=ssh_key,
-        remote_bind_address=(config["db_host"], config["db_port"]),
-        local_bind_address=(config["local_bind_host"], config["local_bind_port"]),
-    ) as tunnel:
-        connection = pymysql.connect(
-            host=config["local_bind_host"],
-            port=tunnel.local_bind_port,
-            user=config["db_user"],
-            password=config["db_password"],
-            db=config["db_name"],
-            cursorclass=pymysql.cursors.DictCursor # each row returned from db as a dictionary
-        )
-
-        try:
+    start_tunnel()
+    try:
+        with get_db_connection() as connection:
             insert_questions(connection, all_questions)
-        finally:
-            connection.close()
-            print("Connection closed")
-            # if no connection.commit(), data will not be saved
+        print("Connection closed")
+    finally:
+        stop_tunnel()
 
 
 if __name__ == "__main__":

@@ -2,9 +2,10 @@ import pymysql
 import paramiko
 from dotenv import load_dotenv
 import os
+import socket
+import threading
 import logging
 import random
-from sshtunnel import SSHTunnelForwarder
 from contextlib import contextmanager
 from typing import List, Dict, Union, Generator
 
@@ -45,7 +46,7 @@ def get_db_config() -> Dict[str, str]:
 
 def load_ssh_key(ssh_key_path: str):
     try:
-        return paramiko.RSAKey.from_private_key_file(ssh_key_path)
+        return paramiko.PKey.from_path(os.path.expanduser(ssh_key_path))
     except Exception as e:
         logger.error(f"Failed to load SSH key: {str(e)}")
         raise
@@ -64,51 +65,120 @@ def create_success_response(data: Union[List, Dict]) -> Dict:
         "data": data
     }
 
+_ssh_client: paramiko.SSHClient = None
+_stop_event: threading.Event = None
+
+
+def start_tunnel() -> None:
+    global _ssh_client, _stop_event
+
+    db_config = get_db_config()
+    ssh_key = load_ssh_key(db_config['ec2_ssh_key_path'])
+
+    _ssh_client = paramiko.SSHClient()
+    _ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    _ssh_client.connect(
+        db_config['ec2_host'],
+        port=22,
+        username=db_config['ec2_user'],
+        pkey=ssh_key,
+    )
+
+    local_host = os.getenv('LOCAL_BIND_HOST', 'localhost')
+    local_port = int(os.getenv('LOCAL_BIND_PORT', '3307'))
+    db_port = int(os.getenv('DB_PORT', '3306'))
+
+    _stop_event = threading.Event()
+    ready = threading.Event()
+    threading.Thread(
+        target=_forward_tunnel,
+        args=(local_host, local_port, db_config['db_host'], db_port,
+              _ssh_client.get_transport(), _stop_event, ready),
+        daemon=True,
+    ).start()
+
+    if not ready.wait(timeout=10):
+        raise RuntimeError("SSH tunnel failed to start within 10 seconds")
+    logger.info("SSH tunnel established")
+
+
+def stop_tunnel() -> None:
+    global _ssh_client, _stop_event
+    if _stop_event:
+        _stop_event.set()
+    if _ssh_client:
+        _ssh_client.close()
+    _ssh_client = None
+    _stop_event = None
+
+
+def _pipe(chan, sock):
+    def forward(src, dst):
+        try:
+            while True:
+                data = src.recv(4096)
+                if not data:
+                    break
+                dst.sendall(data)
+        except Exception:
+            pass
+        finally:
+            try: chan.close()
+            except Exception: pass
+            try: sock.close()
+            except Exception: pass
+
+    threading.Thread(target=forward, args=(chan, sock), daemon=True).start()
+    forward(sock, chan)
+
+
+def _forward_tunnel(local_host, local_port, remote_host, remote_port, transport, stop_event, ready_event):
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server.bind((local_host, local_port))
+    server.listen(100)
+    server.settimeout(0.5)
+    ready_event.set()
+    while not stop_event.is_set():
+        try:
+            client_sock, addr = server.accept()
+        except socket.timeout:
+            continue
+        try:
+            chan = transport.open_channel('direct-tcpip', (remote_host, remote_port), addr)
+        except Exception as e:
+            logger.error(f"Failed to open SSH channel: {e}")
+            client_sock.close()
+            continue
+        threading.Thread(target=_pipe, args=(chan, client_sock), daemon=True).start()
+    server.close()
+
+
 @contextmanager
-# The @contextmanager decorator relies on yield to enable context manager functionality.
 def get_db_connection() -> Generator[pymysql.connections.Connection, None, None]:
     """
-    Create a database connection using SSH tunnel.
+    Create a pymysql connection through the persistent SSH tunnel.
+    Call start_tunnel() once before using this.
     """
-    tunnel = None
     connection = None
-
     try:
         db_config = get_db_config()
-        ssh_key = load_ssh_key(db_config['ec2_ssh_key_path'])
-
-        # Establish SSH tunnel
-        tunnel = SSHTunnelForwarder(
-            (db_config['ec2_host'], 22), # 22 is the default ssh port
-            ssh_username=db_config['ec2_user'],
-            ssh_pkey=ssh_key,
-            remote_bind_address=(db_config['db_host'], 3306), # 3306 for ec2
-            local_bind_address=('localhost', 3307)
-        )
-        tunnel.start()
-        
-        # Create database connection
         connection = pymysql.connect(
-            host="localhost",
-            port=tunnel.local_bind_port,
+            host=os.getenv('LOCAL_BIND_HOST', 'localhost'),
+            port=int(os.getenv('LOCAL_BIND_PORT', '3307')),
             user=db_config['db_user'],
             password=db_config['db_password'],
             db=db_config['db_name'],
-            cursorclass=pymysql.cursors.DictCursor
+            cursorclass=pymysql.cursors.DictCursor,
         )
-        
         logger.info("Database connection established successfully")
-        yield connection # yield return a Generator
-        
+        yield connection
     except Exception as e:
         logger.error(f"Database connection error: {str(e)}")
         raise
-        
     finally:
         if connection:
             connection.close()
-        if tunnel:
-            tunnel.close()
 
 def get_trivia_questions(
     question_types: List[str],
