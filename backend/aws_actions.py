@@ -1,70 +1,96 @@
 import boto3
-from dotenv import load_dotenv
+from botocore.exceptions import ClientError
+from dotenv import load_dotenv, set_key, find_dotenv
 import os
 import argparse
-import time
 
-# Load environment variables
 load_dotenv()
 
-# Initialize AWS clients
-ec2 = boto3.client('ec2', region_name='us-east-1')  # Replace with your region
-rds = boto3.client('rds', region_name='us-east-1')  # Replace with your region
 
-# Get instance IDs from environment variables
-ec2_instance_id = os.getenv("EC2_INSTANCE_ID")
-rds_instance_id = os.getenv("RDS_INSTANCE_ID")
+def _get_clients():
+    region = os.getenv("AWS_REGION", "us-east-1")
+    return (
+        boto3.client('ec2', region_name=region),
+        boto3.client('rds', region_name=region),
+    )
 
-# Start EC2 instance
-def start_ec2_instance(ec2_instance_id):
-    response = ec2.start_instances(InstanceIds=[ec2_instance_id])
-    print(f"Starting EC2 instance: {ec2_instance_id}")
-    # print(response)
-    
-    # Wait until the instance is running
-    waiter = ec2.get_waiter('instance_running')
-    print("Waiting for EC2 instance to be in 'running' state...")
-    waiter.wait(InstanceIds=[ec2_instance_id])
-    
-    # Get the public DNS name
-    instance_info = ec2.describe_instances(InstanceIds=[ec2_instance_id])
-    public_dns_name = instance_info['Reservations'][0]['Instances'][0].get('PublicDnsName', 'No Public DNS')
-    print(f"EC2 instance public DNS: {public_dns_name}")
 
-# Start RDS instance
-def start_rds_instance(rds_instance_id):
-    response = rds.start_db_instance(DBInstanceIdentifier=rds_instance_id)
-    print(f"Starting RDS instance: {rds_instance_id}")
-    # print(response)
+def start_ec2_instance(ec2, instance_id):
+    try:
+        ec2.start_instances(InstanceIds=[instance_id])
+        print(f"Starting EC2 instance: {instance_id}")
+        waiter = ec2.get_waiter('instance_running')
+        print("Waiting for EC2 instance to be running...")
+        waiter.wait(InstanceIds=[instance_id])
+        info = ec2.describe_instances(InstanceIds=[instance_id])
+        public_dns = info['Reservations'][0]['Instances'][0].get('PublicDnsName', '')
+        print(f"EC2 instance running. Public DNS: {public_dns}")
+        if public_dns:
+            env_path = find_dotenv(usecwd=True)
+            set_key(env_path, 'EC2_HOST', public_dns)
+            print(f"Updated EC2_HOST in .env")
+    except ClientError as e:
+        print(f"Error starting EC2 instance: {e}")
+        raise
 
-# Stop EC2 instance
-def stop_ec2_instance(ec2_instance_id):
-    response = ec2.stop_instances(InstanceIds=[ec2_instance_id])
-    print(f"Stopping EC2 instance: {ec2_instance_id}")
-    # print(response)
 
-# Stop RDS instance
-def stop_rds_instance(rds_instance_id):
-    response = rds.stop_db_instance(DBInstanceIdentifier=rds_instance_id)
-    print(f"Stopping RDS instance: {rds_instance_id}")
-    # print(response)
+def stop_ec2_instance(ec2, instance_id):
+    try:
+        ec2.stop_instances(InstanceIds=[instance_id])
+        print(f"Stopping EC2 instance: {instance_id}")
+        waiter = ec2.get_waiter('instance_stopped')
+        print("Waiting for EC2 instance to stop...")
+        waiter.wait(InstanceIds=[instance_id])
+        print(f"EC2 instance {instance_id} stopped")
+    except ClientError as e:
+        print(f"Error stopping EC2 instance: {e}")
+        raise
 
-# Function to handle start or stop based on the argument
+
+def start_rds_instance(rds, instance_id):
+    try:
+        rds.start_db_instance(DBInstanceIdentifier=instance_id)
+        print(f"Starting RDS instance: {instance_id}")
+        waiter = rds.get_waiter('db_instance_available')
+        print("Waiting for RDS instance to be available (this takes a few minutes)...")
+        waiter.wait(DBInstanceIdentifier=instance_id)
+        print(f"RDS instance {instance_id} is available")
+    except ClientError as e:
+        print(f"Error starting RDS instance: {e}")
+        raise
+
+
+def stop_rds_instance(rds, instance_id):
+    try:
+        rds.stop_db_instance(DBInstanceIdentifier=instance_id)
+        print(f"Stopping RDS instance: {instance_id}")
+        waiter = rds.get_waiter('db_instance_stopped')
+        print("Waiting for RDS instance to stop...")
+        waiter.wait(DBInstanceIdentifier=instance_id)
+        print(f"RDS instance {instance_id} stopped")
+    except ClientError as e:
+        print(f"Error stopping RDS instance: {e}")
+        raise
+
+
 def start_or_stop(action):
-    if action == 'start':
-        start_ec2_instance(ec2_instance_id)
-        start_rds_instance(rds_instance_id)
-    elif action == 'stop':
-        stop_ec2_instance(ec2_instance_id)
-        stop_rds_instance(rds_instance_id)
-    else:
-        print("Invalid action for starting EC2 and RDS. Use 'start' or 'stop'.")
+    ec2_instance_id = os.getenv("EC2_INSTANCE_ID")
+    rds_instance_id = os.getenv("RDS_INSTANCE_ID")
+    if not ec2_instance_id or not rds_instance_id:
+        raise EnvironmentError("EC2_INSTANCE_ID and RDS_INSTANCE_ID must be set in .env")
 
-# Main function to handle command-line arguments
+    ec2, rds = _get_clients()
+
+    if action == 'start':
+        start_ec2_instance(ec2, ec2_instance_id)
+        start_rds_instance(rds, rds_instance_id)
+    elif action == 'stop':
+        stop_ec2_instance(ec2, ec2_instance_id)
+        stop_rds_instance(rds, rds_instance_id)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Start or Stop AWS EC2 and RDS instances")
-    parser.add_argument('action', choices=['start', 'stop'], help="Action to perform: 'start' or 'stop'")
+    parser.add_argument('action', choices=['start', 'stop'])
     args = parser.parse_args()
-
-    # Call the start_or_stop function with the provided action
     start_or_stop(args.action)
