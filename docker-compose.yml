@@ -1,10 +1,12 @@
 services:
   backend:
-    build: ./backend
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
     container_name: backend
     volumes:
       - ./backend:/app
-      - /app/conda-env  # Prevents conda environment from being overwritten
+      - /app/.venv  # Prevents uv virtualenv from being overwritten
     secrets:
       - ec2_ssh_key
     ports:
@@ -13,7 +15,6 @@ services:
       FLASK_ENV: development
       FLASK_DEBUG: "1"  # Enable hot-reloading for development
       PYTHONUNBUFFERED: "1"
-      CONDA_DEFAULT_ENV: flask_app_dev_env  # Specify your conda environment name
       EC2_HOST: ${EC2_HOST:?Set EC2_HOST in .env}
       EC2_USER: ${EC2_USER:?Set EC2_USER in .env}
       EC2_SSH_KEY_PATH: /run/secrets/ec2_ssh_key

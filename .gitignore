@@ -2,10 +2,10 @@
 .DS_Store
 Thumbs.db
 
-# Python (Conda)
-# Ignore Conda environment directories
+# Python
 env/
 venv/
+.venv/
 conda-env/
 
 # Ignore Python cache files

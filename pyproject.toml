@@ -1,0 +1,20 @@
+[project]
+name = "trivia-web-app"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "flask",
+    "flask-cors",
+    "boto3",
+    "requests",
+    "pymysql",
+    "sshtunnel",
+    "paramiko",
+    "python-dotenv",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "jupyter",
+]

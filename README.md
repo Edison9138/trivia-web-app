@@ -8,7 +8,7 @@ backend fetches questions and calculates scores using server-side answer lookup.
 
 - Docker and Docker Compose, or:
 - Node.js 20+ and npm for the frontend
-- Conda for the Flask backend
+- [uv](https://docs.astral.sh/uv/) for the Flask backend and scripts
 - A MySQL-compatible database reachable through the configured SSH tunnel
 
 ## Environment
@@ -67,17 +67,17 @@ npm run build
 
 ## Backend
 
-Create the Conda environment:
+Install dependencies:
 
 ```sh
-cd backend
-conda env create -f environment.yml
+uv sync
 ```
 
 Run the Flask app locally:
 
 ```sh
-conda run --no-capture-output -n flask_app_dev_env flask --app app.py run --host 0.0.0.0 --port 5001
+cd backend
+uv run flask --app app.py run --host 0.0.0.0 --port 5001
 ```
 
 ## Docker

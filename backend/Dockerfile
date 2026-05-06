@@ -1,21 +1,11 @@
-FROM continuumio/miniconda3
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 
 WORKDIR /app
 
-# Copy environment.yml file
-COPY environment.yml .
+COPY pyproject.toml ./
+RUN uv sync --no-dev
 
-# Create conda environment
-RUN conda env create -f environment.yml
-
-# Initialize conda in bash config files
-RUN conda init bash
-
-# Make RUN commands use the conda environmenta
-SHELL ["conda", "run", "-n", "flask_app_dev_env", "/bin/bash", "-c"]
-
-# Copy the rest of the application
-COPY . .
+COPY backend/ .
 
 ENV FLASK_APP=app.py \
     FLASK_RUN_HOST=0.0.0.0 \
@@ -24,5 +14,4 @@ ENV FLASK_APP=app.py \
 
 EXPOSE 5001
 
-# Run Flask application using the conda environment
-CMD ["conda", "run", "--no-capture-output", "-n", "flask_app_dev_env", "flask", "run"]
+CMD ["uv", "run", "flask", "run"]
