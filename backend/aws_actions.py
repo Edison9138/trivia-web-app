@@ -62,12 +62,13 @@ def start_rds_instance(rds, instance_id):
 
 def stop_rds_instance(rds, instance_id):
     try:
+        status = rds.describe_db_instances(DBInstanceIdentifier=instance_id)
+        state = status['DBInstances'][0]['DBInstanceStatus']
+        if state in ('stopped', 'stopping'):
+            print(f"RDS instance {instance_id} is already {state}")
+            return
         rds.stop_db_instance(DBInstanceIdentifier=instance_id)
-        print(f"Stopping RDS instance: {instance_id}")
-        waiter = rds.get_waiter('db_instance_stopped')
-        print("Waiting for RDS instance to stop...")
-        waiter.wait(DBInstanceIdentifier=instance_id)
-        print(f"RDS instance {instance_id} stopped")
+        print(f"RDS instance {instance_id} stopping (takes a few minutes to complete)")
     except ClientError as e:
         print(f"Error stopping RDS instance: {e}")
         raise
